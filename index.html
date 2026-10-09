@@ -4,16 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Suhaas Narayanan</title>
-<meta name="description" content="Suhaas Narayanan — consultant, Wharton graduate, and USCF National Master in chess.">
+<meta name="description" content="Suhaas Narayanan — Wharton graduate with experience in strategy consulting, venture capital and finance, and a USCF National Master in chess.">
 <meta property="og:title" content="Suhaas Narayanan">
-<meta property="og:description" content="Consultant, Wharton graduate, and USCF National Master in chess.">
-<meta property="og:type" content="website">
+<meta property="og:description" content="Wharton graduate with experience in strategy consulting, venture capital and finance. USCF National Master.">
+<meta property="og:type" content="profile">
 <meta property="og:image" content="https://suhaasnarayanan.com/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Suhaas Narayanan — USCF National Master and coach">
-<meta name="twitter:image" content="https://suhaasnarayanan.com/og-image.png">
+<meta property="og:image:alt" content="Suhaas Narayanan">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://suhaasnarayanan.com/og-image.png">
 <meta property="og:url" content="https://suhaasnarayanan.com/">
 <link rel="canonical" href="https://suhaasnarayanan.com/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2712%27 fill=%27%2313284a%27/%3E%3Ctext x=%2732%27 y=%2746%27 font-family=%27Georgia,serif%27 font-size=%2740%27 text-anchor=%27middle%27 fill=%27%23ffffff%27%3ES%3C/text%3E%3C/svg%3E">
@@ -26,74 +26,165 @@
   "@type": "Person",
   "name": "Suhaas Narayanan",
   "url": "https://suhaasnarayanan.com/",
-  "jobTitle": "Consultant",
-  "alumniOf": "The Wharton School, University of Pennsylvania",
-  "award": "USCF National Master",
+  "image": "https://suhaasnarayanan.com/images/suhaas-narayanan.jpg",
+  "email": "mailto:suhaas.nara@gmail.com",
+  "alumniOf": { "@type": "CollegeOrUniversity", "name": "The Wharton School, University of Pennsylvania" },
+  "homeLocation": { "@type": "Place", "name": "Fort Collins, Colorado" },
+  "award": ["USCF National Master", "ISEF Finalist (2019, 2020)"],
   "sameAs": [
+    "https://www.linkedin.com/in/suhaasn/",
     "https://suhaasnarayanan.com/chess/",
     "https://www.chess.com/member/coachsuhaas",
     "https://lichess.org/@/suhaasn",
-    "https://www.uschess.org/msa/MbrDtlMain.php?14290675"
+    "https://www.uschess.org/msa/MbrDtlMain.php?14290675",
+    "https://chessmatesfc.com/coach/suhaas-narayanan/"
   ]
 }
 </script>
 <style>
-  /* Same palette and fonts as the chess site */
+  /* Same palette and fonts as the chess site.
+     Layout: navy header with portrait, then full-width sections alternating white / pale blue. */
   :root {
     --navy: #13284a; --ink: #1b2636; --muted: #536175; --blue: #1f4e8c;
     --blue-on-navy: #a9c4ec; --band: #f2f6fb; --line: #d9e1ec; --white: #ffffff;
-    --serif: 'Libre Caslon Text', Georgia, serif;
-    --sans: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif;
+    --serif: 'Libre Caslon Text', Georgia, 'Times New Roman', serif;
+    --sans: 'Source Sans 3', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --wide: 960px;
+    --gutter: max(24px, calc((100% - var(--wide)) / 2));
+    --radius: 4px;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: var(--sans); font-size: 1.0625rem; line-height: 1.65; color: var(--ink); background: var(--white); -webkit-font-smoothing: antialiased; min-height: 100vh; display: flex; flex-direction: column; }
-  header { background: var(--navy); color: var(--white); padding: 96px max(24px, calc((100% - 760px) / 2)) 72px; }
-  .label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue-on-navy); margin-bottom: 20px; }
-  h1 { font-family: var(--serif); font-weight: 400; font-size: 3.25rem; line-height: 1.1; letter-spacing: -0.01em; }
-  h1 em { color: var(--blue-on-navy); }
-  header p { color: rgba(255, 255, 255, 0.78); font-size: 1.15rem; max-width: 56ch; margin-top: 20px; }
-  main { flex: 1; padding: 64px max(24px, calc((100% - 760px) / 2)); background: var(--band); }
-  h2 { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; color: var(--navy); margin-bottom: 20px; }
-  .links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  .card { display: block; background: var(--white); border: 1px solid var(--line); border-radius: 4px; padding: 24px; text-decoration: none; color: inherit; transition: border-color 0.2s; }
-  .card:hover { border-color: var(--blue); }
-  .card h3 { font-family: var(--serif); font-weight: 400; font-size: 1.2rem; color: var(--navy); margin-bottom: 6px; }
-  .card p { color: var(--muted); font-size: 0.95rem; }
-  .card span { display: inline-block; margin-top: 12px; color: var(--blue); font-weight: 600; font-size: 0.95rem; }
-  .note { color: var(--muted); font-size: 0.95rem; margin-top: 28px; }
-  .note a { color: var(--blue); text-underline-offset: 3px; }
-  footer { background: var(--navy); color: rgba(255, 255, 255, 0.55); text-align: center; padding: 24px; font-size: 0.875rem; }
+  body { font-family: var(--sans); font-size: 1.0625rem; line-height: 1.65; color: var(--ink); background: var(--white); -webkit-font-smoothing: antialiased; }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 400; color: var(--navy); line-height: 1.2; text-wrap: balance; }
+  a { color: var(--blue); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  a:hover { color: var(--navy); }
   :focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
-  @media (max-width: 640px) {
-    header { padding: 64px 20px 48px; }
+
+  /* Header */
+  header { background: var(--navy); color: var(--white); padding: 88px var(--gutter) 72px; }
+  .header-inner { display: grid; grid-template-columns: 1fr 240px; gap: 56px; align-items: center; }
+  .label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue-on-navy); margin-bottom: 18px; }
+  h1 { font-size: 3.25rem; color: var(--white); letter-spacing: -0.01em; line-height: 1.08; }
+  h1 em { color: var(--blue-on-navy); }
+  .intro { color: rgba(255, 255, 255, 0.8); font-size: 1.15rem; margin-top: 18px; max-width: 52ch; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .btn { display: inline-block; padding: 11px 20px; border-radius: var(--radius); font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: background 0.2s, border-color 0.2s, color 0.2s; }
+  .btn-primary { background: var(--white); color: var(--navy); border: 1px solid var(--white); }
+  .btn-primary:hover { background: #e2eaf6; color: var(--navy); }
+  .btn-ghost { color: var(--white); border: 1px solid rgba(255, 255, 255, 0.4); }
+  .btn-ghost:hover { border-color: var(--white); color: var(--white); background: rgba(255, 255, 255, 0.08); }
+  .portrait { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius); display: block; background: #1d3560; }
+
+  /* Sections */
+  section { padding: 72px var(--gutter); }
+  section:nth-of-type(even) { background: var(--band); }
+  .section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  h2 { font-size: 1.875rem; margin-bottom: 24px; }
+  h3 { font-size: 1.2rem; margin: 36px 0 12px; }
+  h3:first-of-type { margin-top: 0; }
+  .prose p { color: var(--muted); max-width: 65ch; margin-bottom: 16px; }
+  .prose p:last-child { margin-bottom: 0; }
+
+  /* Experience rows */
+  .rows { list-style: none; border-top: 1px solid var(--line); }
+  .rows li { display: grid; grid-template-columns: 1fr auto; gap: 4px 24px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .rows .org { font-weight: 600; color: var(--navy); }
+  .rows .role { color: var(--muted); }
+  .rows .when { color: var(--muted); font-size: 0.95rem; white-space: nowrap; font-variant-numeric: tabular-nums; text-align: right; }
+  .edu { margin-bottom: 40px; }
+
+  /* Around the web */
+  .links { list-style: none; border-top: 1px solid var(--line); margin-bottom: 8px; }
+  .links li { padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .links a { font-weight: 600; text-decoration: none; }
+  .links a:hover { text-decoration: underline; }
+  .links .meta { display: block; font-size: 0.9rem; color: var(--muted); margin-top: 2px; }
+
+  footer { background: var(--navy); color: rgba(255, 255, 255, 0.55); text-align: center; padding: 24px; font-size: 0.875rem; }
+
+  @media (max-width: 720px) {
+    header { padding: 56px 20px 48px; }
+    .header-inner { grid-template-columns: 1fr; gap: 32px; }
+    .portrait { width: 180px; order: -1; }
     h1 { font-size: 2.4rem; }
-    main { padding: 48px 20px; }
-    .links { grid-template-columns: 1fr; }
+    section { padding: 48px 20px; }
+    .rows li { grid-template-columns: 1fr; }
+    .rows .when { text-align: left; }
   }
 </style>
 </head>
 <body>
+
 <header>
-  <div class="label">Consultant · Wharton Graduate · USCF National Master</div>
-  <h1>Suhaas <em>Narayanan</em></h1>
-  <p>I'm a consultant and a lifelong chess player. I reached National Master and now coach and write about chess improvement.</p>
-</header>
-<main>
-  <h2>Find me</h2>
-  <div class="links">
-    <a class="card" href="/chess/">
-      <h3>Chess</h3>
-      <p>My journey to National Master, a free improvement guide, and coaching.</p>
-      <span>Visit the chess site →</span>
-    </a>
-    <a class="card" href="/chess/#contact">
-      <h3>Get in touch</h3>
-      <p>Questions, coaching inquiries, or just to say hello.</p>
-      <span>Contact me →</span>
-    </a>
+  <div class="header-inner">
+    <div>
+      <div class="label">Wharton '25 · Strategy &amp; Finance · USCF National Master</div>
+      <h1>Suhaas <em>Narayanan</em></h1>
+      <p class="intro">Wharton graduate with experience in strategy consulting, venture capital and finance. Based in Fort Collins, Colorado.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="mailto:suhaas.nara@gmail.com">Email</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/suhaasn/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-ghost" href="/chess/">Chess</a>
+      </div>
+    </div>
+    <img class="portrait" src="/images/suhaas-narayanan.jpg" alt="Suhaas Narayanan" width="640" height="800">
   </div>
-  <p class="note">Email <a href="mailto:hello@suhaasnarayanan.com">hello@suhaasnarayanan.com</a>. Also on <a href="https://www.chess.com/member/coachsuhaas" target="_blank" rel="noopener">Chess.com</a> and <a href="https://lichess.org/@/suhaasn" target="_blank" rel="noopener">Lichess</a>. More coming soon.</p>
+</header>
+
+<main>
+  <section id="about">
+    <h2>About</h2>
+    <div class="prose">
+      <p>I graduated summa cum laude from the Wharton School at the University of Pennsylvania with a B.S. in Economics, concentrating in Finance and in Statistics &amp; Data Science. Most recently, I was a strategy consulting intern at Advancy in London, where I worked on antitrust and market analysis for a potential merger.</p>
+      <p>During college, I took two years away from Penn to work in venture capital at Innosphere Ventures in Fort Collins. I've also interned with the City of Fort Collins, Ryder System and the Aravind Eye Care System in India.</p>
+      <p>Outside of work, I'm a USCF National Master. I've played chess since I was four, and I coach and direct tournaments in Fort Collins. You can read about my <a href="/chess/">chess journey and coaching</a>. I also enjoy climbing and volleyball.</p>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="section-label">Background</div>
+    <h2>Education &amp; Experience</h2>
+    <ul class="rows edu">
+      <li><div><div class="org">The Wharton School, University of Pennsylvania</div><div class="role">B.S. in Economics, summa cum laude · Finance; Statistics &amp; Data Science</div></div><div class="when">2025</div></li>
+    </ul>
+    <ul class="rows">
+      <li><div><div class="org">Advancy · London</div><div class="role">Strategy Consulting Intern</div></div><div class="when">2026</div></li>
+      <li><div><div class="org">Chessmates &amp; Competitive Chess · Fort Collins</div><div class="role">Chess Coach, Tournament Director &amp; Competitive Player</div></div><div class="when">2023 – 2026</div></li>
+      <li><div><div class="org">City of Fort Collins</div><div class="role">Finance Intern</div></div><div class="when">2023</div></li>
+      <li><div><div class="org">Ryder System, Inc.</div><div class="role">Internal Audit Intern</div></div><div class="when">2022</div></li>
+      <li><div><div class="org">Aravind Eye Care System · Madurai, India</div><div class="role">Research Intern, Center for the Advanced Study of India</div></div><div class="when">2022</div></li>
+      <li><div><div class="org">Innosphere Ventures · Fort Collins</div><div class="role">Fund Analyst &amp; Research Associate</div></div><div class="when">2021 – 2023</div></li>
+    </ul>
+  </section>
+
+  <section id="elsewhere">
+    <div class="section-label">Around the Web</div>
+    <h2>Elsewhere Online</h2>
+
+    <h3>Chess</h3>
+    <ul class="links">
+      <li><a href="/chess/">Chess site</a><span class="meta">My journey to National Master, a free improvement guide, and coaching.</span></li>
+      <li><a href="https://www.uschess.org/msa/MbrDtlMain.php?14290675" target="_blank" rel="noopener">US Chess profile</a><span class="meta">Official rating and tournament history.</span></li>
+      <li><a href="https://chessmatesfc.com/coach/suhaas-narayanan/" target="_blank" rel="noopener">Chessmates coach profile</a><span class="meta">Chessmates, Fort Collins. Background, accolades and coaching.</span></li>
+      <li><a href="https://www.chess.com/member/coachsuhaas" target="_blank" rel="noopener">Chess.com</a> and <a href="https://lichess.org/@/suhaasn" target="_blank" rel="noopener">Lichess</a><span class="meta">Online play.</span></li>
+    </ul>
+
+    <h3>Research &amp; Competitions</h3>
+    <ul class="links">
+      <li><a href="https://abstracts.societyforscience.org/Home/FullAbstract?ProjectId=19375" target="_blank" rel="noopener">Utilizing Tuberculosis-Recognizing Antibody Serum to Identify Specific Tuberculosis Antigens to Fabricate a Novel Vaccine</a><span class="meta">Society for Science · ISEF 2020 Finalist, Translational Medical Science</span></li>
+      <li><a href="https://abstracts.societyforscience.org/Home/FullAbstract?ProjectId=18876" target="_blank" rel="noopener">A Novel Approach to the Synthesis of 3,5-Disubstituted Delta-2-Isoxazoline as a Precursor to Various Diabetic Medications</a><span class="meta">Society for Science · ISEF 2019 Finalist, Chemistry (with Charles Wang)</span></li>
+      <li><a href="https://www.flickr.com/photos/nationalsciencebowl/33822831868" target="_blank" rel="noopener">Fort Collins High School at the 2019 National Science Bowl</a><span class="meta">U.S. Department of Energy · Team photo from the national finals in Washington, D.C.</span></li>
+      <li><a href="https://cires.colorado.edu/news/national-ocean-science-competition-makes-splash-colorado" target="_blank" rel="noopener">National Ocean Sciences Bowl comes to Colorado</a><span class="meta">CIRES, University of Colorado · 2018. Fort Collins High School wins the regional Trout Bowl.</span></li>
+      <li><a href="https://www.coloradoan.com/story/news/2017/05/05/fort-collins-school-top-10-national-science-bowl/311530001/" target="_blank" rel="noopener">Fort Collins school in top 10 at National Science Bowl</a><span class="meta">Coloradoan · 2017</span></li>
+    </ul>
+
+    <h3>Writing</h3>
+    <ul class="links">
+      <li><a href="https://casistudentprograms.wordpress.com/2022/09/11/clocking-out/" target="_blank" rel="noopener">Clocking Out</a><span class="meta">Center for the Advanced Study of India, Penn · 2022. Reflections from my research internship at Aravind Eye Care System.</span></li>
+    </ul>
+  </section>
 </main>
+
 <footer>© 2026 Suhaas Narayanan</footer>
 </body>
 </html>
