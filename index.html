@@ -73,11 +73,13 @@
   .btn-primary:hover { background: #e2eaf6; color: var(--navy); }
   .btn-ghost { color: var(--white); border: 1px solid rgba(255, 255, 255, 0.4); }
   .btn-ghost:hover { border-color: var(--white); color: var(--white); background: rgba(255, 255, 255, 0.08); }
+  .btn-chess { background: var(--blue-on-navy); color: var(--navy); border: 1px solid var(--blue-on-navy); }
+  .btn-chess:hover { background: #c6d8f2; border-color: #c6d8f2; color: var(--navy); }
   .portrait { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius); display: block; background: #1d3560; }
 
   /* Sections */
   section { padding: 72px var(--gutter); }
-  section:nth-of-type(even) { background: var(--band); }
+  section.band { background: var(--band); }
   .section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
   h2 { font-size: 1.875rem; margin-bottom: 24px; }
   h3 { font-size: 1.2rem; margin: 36px 0 12px; }
@@ -98,10 +100,24 @@
   .links li { padding: 14px 0; border-bottom: 1px solid var(--line); }
   .links a { font-weight: 600; text-decoration: none; }
   .links a:hover { text-decoration: underline; }
+  .links .hs a { font-weight: 600; }
   .links .meta { display: block; font-size: 0.9rem; color: var(--muted); margin-top: 2px; }
+
+  /* Chess feature band */
+  section.chess { background: var(--navy); color: var(--white); }
+  .chess .section-label { color: var(--blue-on-navy); }
+  .chess h2 { color: var(--white); margin-bottom: 12px; }
+  .chess .lede { color: rgba(255, 255, 255, 0.78); max-width: 60ch; margin-bottom: 32px; }
+  .chess-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+  .chess-card { display: block; padding: 20px; border: 1px solid rgba(255, 255, 255, 0.18); border-radius: var(--radius); text-decoration: none; transition: border-color 0.2s, background 0.2s; }
+  .chess-card:hover { border-color: var(--blue-on-navy); background: rgba(255, 255, 255, 0.05); }
+  .chess-card strong { display: block; font-family: var(--serif); font-weight: 400; font-size: 1.15rem; color: var(--white); margin-bottom: 6px; }
+  .chess-card span { color: rgba(255, 255, 255, 0.7); font-size: 0.95rem; line-height: 1.5; }
+  .role-desc { grid-column: 1 / -1; color: var(--muted); font-size: 0.95rem; max-width: 70ch; }
 
   footer { background: var(--navy); color: rgba(255, 255, 255, 0.55); text-align: center; padding: 24px; font-size: 0.875rem; }
 
+  @media (max-width: 960px) and (min-width: 721px) { .chess-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 720px) {
     header { padding: 56px 20px 48px; }
     .header-inner { grid-template-columns: 1fr; gap: 32px; }
@@ -110,6 +126,7 @@
     section { padding: 48px 20px; }
     .rows li { grid-template-columns: 1fr; }
     .rows .when { text-align: left; }
+    .chess-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -124,7 +141,7 @@
       <div class="actions">
         <a class="btn btn-primary" href="mailto:suhaas.nara@gmail.com">Email</a>
         <a class="btn btn-ghost" href="https://www.linkedin.com/in/suhaasn/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn btn-ghost" href="/chess/">Chess</a>
+        <a class="btn btn-chess" href="/chess/">Chess Site</a>
       </div>
     </div>
     <img class="portrait" src="/images/suhaas-narayanan.jpg" alt="Suhaas Narayanan" width="640" height="800">
@@ -141,7 +158,7 @@
     </div>
   </section>
 
-  <section id="experience">
+  <section id="experience" class="band">
     <div class="section-label">Background</div>
     <h2>Education &amp; Experience</h2>
     <ul class="rows edu">
@@ -149,13 +166,26 @@
       <li><div><div class="org">Fort Collins High School</div><div class="role">Salutatorian</div></div><div class="when">2020</div></li>
     </ul>
     <ul class="rows">
-      <li><div><div class="org">Advancy · London</div><div class="role">Strategy Consulting Intern</div></div><div class="when">Summer 2026</div></li>
-      <li><div><div class="org">Chessmates &amp; Competitive Chess · Fort Collins</div><div class="role">Chess Coach, Tournament Director &amp; Competitive Player</div></div><div class="when">2023 – 2026</div></li>
-      <li><div><div class="org">Innosphere Ventures · Fort Collins</div><div class="role">Fund Analyst &amp; Research Associate</div></div><div class="when">2021 – 2023</div></li>
-      <li><div><div class="org">City of Fort Collins</div><div class="role">Finance Intern</div></div><div class="when">Summer 2023</div></li>
-      <li><div><div class="org">Ryder System, Inc.</div><div class="role">Internal Audit Intern</div></div><div class="when">Fall 2022</div></li>
-      <li><div><div class="org">Aravind Eye Care System · Madurai, India</div><div class="role">Research Intern, Center for the Advanced Study of India</div></div><div class="when">Summer 2022</div></li>
+      <li><div><div class="org">Advancy · London</div><div class="role">Strategy Consulting Intern</div></div><div class="when">Summer 2026</div><p class="role-desc">Assessed antitrust exposure for a potential merger by quantifying market shares across multiple market definitions, and worked on commercial due diligence for PE clients.</p></li>
+      <li><div><div class="org">Chessmates &amp; Competitive Chess · Fort Collins</div><div class="role">Chess Coach, Tournament Director &amp; Competitive Player</div></div><div class="when">2023 – 2026</div><p class="role-desc">Coached students across 5+ schools and 20+ private clients, designed a standardized curriculum, recruited instructors, and directed tournaments.</p></li>
+      <li><div><div class="org">Innosphere Ventures · Fort Collins</div><div class="role">Fund Analyst &amp; Research Associate</div></div><div class="when">2021 – 2023</div><p class="role-desc">Conducted due diligence and financial modeling on portfolio companies, venture funds, and grant applications, and compiled market and technical research for 30+ startups across SaaS, cleantech, and medtech.</p></li>
+      <li><div><div class="org">City of Fort Collins</div><div class="role">Finance Intern</div></div><div class="when">Summer 2023</div><p class="role-desc">Built a Power BI revenue dashboard centralizing funding data across departments and audited 20+ payment processing systems across 10+ departments.</p></li>
+      <li><div><div class="org">Ryder System, Inc.</div><div class="role">Internal Audit Intern</div></div><div class="when">Fall 2022</div><p class="role-desc">Performed SOX compliance testing for a $12B+ Fortune 500 logistics company.</p></li>
+      <li><div><div class="org">Aravind Eye Care System · Madurai, India</div><div class="role">Research Intern, Center for the Advanced Study of India</div></div><div class="when">Summer 2022</div><p class="role-desc">Authored a 30-page report on refraction protocols with data-driven recommendations to LAICO, Aravind&#39;s consulting arm, to improve clinical workflow.</p></li>
     </ul>
+  </section>
+
+  <section id="chess" class="chess">
+    <div class="section-label">Chess</div>
+    <h2>Journey to National Master</h2>
+    <p class="lede">I've played since I was four. My chess site covers how I reached National Master, a free improvement guide, and coaching.</p>
+    <div class="chess-grid">
+      <a class="chess-card" href="/chess/#journey"><strong>My Journey</strong><span>Early years, the comeback, and the final push to NM.</span></a>
+      <a class="chess-card" href="/chess/#improvement"><strong>Improvement Guide</strong><span>Where to start, game review, openings, and tournament prep.</span></a>
+      <a class="chess-card" href="/chess/#coaching"><strong>Coaching</strong><span>My approach, experience, and lesson packages.</span></a>
+      <a class="chess-card" href="/chess/blog/the-final-push.html"><strong>The Final Push</strong><span>What changed when I went from below 2100 to 2204.</span></a>
+    </div>
+    <a class="btn btn-chess" href="/chess/">Visit the chess site</a>
   </section>
 
   <section id="elsewhere">
@@ -174,9 +204,7 @@
     <ul class="links">
       <li><a href="https://abstracts.societyforscience.org/Home/FullAbstract?ProjectId=19375" target="_blank" rel="noopener">Utilizing Tuberculosis-Recognizing Antibody Serum to Identify Specific Tuberculosis Antigens to Fabricate a Novel Vaccine</a><span class="meta">Society for Science · ISEF 2020 Finalist, Translational Medical Science</span></li>
       <li><a href="https://abstracts.societyforscience.org/Home/FullAbstract?ProjectId=18876" target="_blank" rel="noopener">A Novel Approach to the Synthesis of 3,5-Disubstituted Delta-2-Isoxazoline as a Precursor to Various Diabetic Medications</a><span class="meta">Society for Science · ISEF 2019 Finalist, Chemistry (with Charles Wang)</span></li>
-      <li><a href="https://www.flickr.com/photos/nationalsciencebowl/33822831868" target="_blank" rel="noopener">Fort Collins High School at the 2019 National Science Bowl</a><span class="meta">U.S. Department of Energy · Team photo from the national finals in Washington, D.C.</span></li>
-      <li><a href="https://cires.colorado.edu/news/national-ocean-science-competition-makes-splash-colorado" target="_blank" rel="noopener">National Ocean Sciences Bowl comes to Colorado</a><span class="meta">CIRES, University of Colorado · 2018. Fort Collins High School wins the regional Trout Bowl.</span></li>
-      <li><a href="https://www.coloradoan.com/story/news/2017/05/05/fort-collins-school-top-10-national-science-bowl/311530001/" target="_blank" rel="noopener">Fort Collins school in top 10 at National Science Bowl</a><span class="meta">Coloradoan · 2017</span></li>
+      <li><span class="hs">Fort Collins High School science teams: National Science Bowl top 10 (<a href="https://www.coloradoan.com/story/news/2017/05/05/fort-collins-school-top-10-national-science-bowl/311530001/" target="_blank" rel="noopener">2017</a>) and national finals (<a href="https://www.flickr.com/photos/nationalsciencebowl/33822831868" target="_blank" rel="noopener">2019</a>), and regional Ocean Sciences Bowl champions (<a href="https://cires.colorado.edu/news/national-ocean-science-competition-makes-splash-colorado" target="_blank" rel="noopener">2018</a>)</span></li>
     </ul>
 
     <h3>Writing</h3>
