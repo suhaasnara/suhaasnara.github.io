@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hurricane Katrina's Impact on Employment · Suhaas Narayanan</title>
+<meta name="description" content="A difference-in-differences study of Hurricane Katrina's effect on employment in 64 Louisiana counties. BEPP 2800, team of six.">
+<meta property="og:title" content="Hurricane Katrina's Impact on Employment · Suhaas Narayanan">
+<meta property="og:description" content="A difference-in-differences study of Hurricane Katrina's effect on employment in 64 Louisiana counties. BEPP 2800, team of six.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Suhaas Narayanan">
+<meta property="og:image" content="https://suhaasnarayanan.com/og-home.png?v=3">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://suhaasnarayanan.com/og-home.png?v=3">
+<meta property="og:url" content="https://suhaasnarayanan.com/projects/katrina/">
+<link rel="canonical" href="https://suhaasnarayanan.com/projects/katrina/">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;1,400&family=Source+Sans+3:wght@400;600&display=swap">
+<link rel="stylesheet" href="/assets/site.css?v=5">
+</head>
+<body>
+<nav class="topnav" aria-label="Main"><a class="brand" href="/">Suhaas Narayanan</a><div class="navlinks"><a href="/">Home</a><a href="/experience/">Experience</a><div class="navdrop is-current"><a href="/projects/" aria-current="page">Projects</a><button type="button" class="navdrop-btn" aria-expanded="false" aria-controls="navdrop-menu" aria-label="Show project pages"><svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button><div class="navdrop-menu" id="navdrop-menu"><span class="navdrop-h">Full write-ups</span><a href="/projects/katrina/">Goals Scored in the Premier League</a><a href="/projects/maze/">Maze Therapeutics: Series E Investment</a><a href="/projects/katrina/">Hurricane Katrina's Impact on Employment</a><a href="/projects/chess-ratings/">My Chess Rating, 2009-2026</a><a class="navdrop-all" href="/projects/">All projects →</a></div></div><a href="/chess/">Chess</a></div></nav>
+<header class="page-hero">
+  <a class="crumb" href="/projects/#katrina">← All projects</a>
+  <div class="label">Causal inference · BEPP 2800 · Team of six</div>
+  <h1>Hurricane Katrina's Impact on Employment</h1>
+  <p class="lede">What was the causal impact of Hurricane Katrina on county level economic outcomes in affected regions?</p>
+  <dl class="facts">
+    <div><dt>Course</dt><dd>BEPP 2800, Wharton</dd></div>
+    <div><dt>Team</dt><dd>Team of six</dd></div>
+    <div><dt>When</dt><dd>December 2025</dd></div>
+    <div><dt>Method</dt><dd>Difference-in-differences with county and time fixed effects</dd></div>
+  </dl>
+</header>
+
+<main>
+  <section class="dsec" id="question">
+    <div class="section-label">The question</div>
+    <h2>A natural disaster as an economic shock</h2>
+    <div class="prose">
+      <p>Hurricane Katrina was one of the most severe natural disasters in U.S. history, causing extensive physical destruction, population displacement, and disruption to local labor markets across the Gulf Coast.</p>
+      <p>The storm's path and intensity created sharp differences in exposure across counties that were largely unrelated to pre-existing economic conditions, generating plausibly exogenous variation in economic outcomes. County-level employment data allows us to observe localized labor market responses to the hurricane and to compare affected and unaffected counties over time.</p>
+    </div>
+    <div class="steps">
+      <div><h3>Natural experiment</h3><p>Hurricane Katrina (August 2005) as a natural disaster. A sudden shock, geographically concentrated, with no manipulation of treatment.</p></div>
+      <div><h3>Identification strategy</h3><p>Compare affected and unaffected counties before and after the hurricane. Use DiD to account for background effects and estimate an average treatment effect.</p></div>
+      <div><h3>Key assumption</h3><p>Parallel trends: in the absence of Hurricane Katrina, employment trends would be similar across the affected and unaffected counties.</p></div>
+    </div>
+  </section>
+
+  <section class="dsec band" id="data">
+    <div class="section-label">The data</div>
+    <h2>64 Louisiana counties, 20 quarters</h2>
+    <div class="prose">
+      <p>County-level quarterly employment and wage data for Louisiana from Kaggle, combined with hurricane exposure indicators for Hurricane Katrina. Each observation is a county in a quarter: a balanced sample of 64 counties over 20 quarters (2003 to 2007), or 1,280 observations. The outcome is quarterly employment, and 20 of the 64 counties are flagged as affected.</p>
+    </div>
+    <figure class="fig" id="kt-trend">
+      <div class="fig-head">
+        <div class="seg" role="group" aria-label="Scale">
+          <button type="button" data-v="idx" aria-pressed="true">Indexed to 2005 Q2</button><button type="button" data-v="lvl" aria-pressed="false">Average employment</button>
+        </div>
+        <div class="key"><span><i class="ln" style="background:var(--c1)"></i>Affected counties (20)</span><span><i class="ln" style="background:var(--c2)"></i>Unaffected counties (44)</span></div>
+      </div>
+      <div class="plot"><svg viewBox="0 0 880 340" role="img" aria-label="Line chart of average quarterly employment for affected and unaffected Louisiana counties from 2003 to 2007. The two groups move together until Katrina, then affected counties drop sharply in late 2005 and recover gradually through 2007."></svg><div class="tip"></div></div>
+      <figcaption class="fig-note" id="kt-trend-note"></figcaption>
+    </figure>
+    <div class="prose" style="margin-top:20px">
+      <p>While levels differ, the parallel trends assumption is supported by the roughly similar pre-2005 trends. The main figure shows the distinct decline in mean quarterly employment by affected counties. Interestingly, there seems to be a recovery in employment as time progresses.</p>
+    </div>
+  </section>
+
+  <section class="dsec" id="estimate">
+    <div class="section-label">The estimate</div>
+    <h2>About 12,800 fewer jobs, but not significant</h2>
+    <div class="cards2">
+      <div class="cardx"><span class="badge">Affected counties</span><div class="deal-n" id="kt-a">-10,455</div><div class="deal-l">change in average quarterly employment, pre to post</div><p>173,641 before Katrina, 163,185 after.</p></div>
+      <div class="cardx"><span class="badge">Unaffected counties</span><div class="deal-n" id="kt-u">+2,351</div><div class="deal-l">change in average quarterly employment, pre to post</div><p>47,772 before Katrina, 50,122 after.</p></div>
+    </div>
+    <div class="stats" style="margin-top:16px">
+      <div class="stat"><div class="n">-12,806</div><div class="l">difference-in-differences, jobs per county per quarter</div></div>
+      <div class="stat"><div class="n">0.368</div><div class="l">p-value, standard errors clustered by county</div></div>
+      <div class="stat"><div class="n">64</div><div class="l">clusters (counties)</div></div>
+      <div class="stat"><div class="n">1,280</div><div class="l">county-quarter observations</div></div>
+    </div>
+    <figure class="fig" id="kt-ci">
+      <div class="fig-head"><span class="fig-title">DiD estimate with 95% confidence interval, jobs</span></div>
+      <div class="plot"><svg viewBox="0 0 880 150" role="img" aria-label="The DiD estimate of about minus 12,800 jobs, with a 95 percent confidence interval from about minus 40,700 to plus 15,100 that crosses zero."></svg><div class="tip"></div></div>
+      <figcaption class="fig-note">The interval is built from the regression's clustered F-statistic (0.81), which implies a standard error of about 14,200 jobs. It crosses zero, so we fail to reject the null of no effect.</figcaption>
+    </figure>
+    <div class="prose" style="margin-top:20px">
+      <p>The model regresses quarterly employment on the treatment interaction (affected county × after 2005 Q3), with county and time fixed effects and standard errors clustered at the county level. County fixed effects control for time-invariant differences in employment level, time fixed effects control for state-wide shocks across counties, and clustered standard errors account for correlation within counties.</p>
+      <p>The regression estimated an average decrease of approximately 12,800 jobs in quarterly employment for counties affected by Hurricane Katrina. However, this point estimate isn't statistically significant, with the standard error higher than the estimated treatment effect (p-value = 0.368). This indicates that counties likely experienced heterogeneous levels of change in employment.</p>
+    </div>
+  </section>
+
+  <section class="dsec band" id="heterogeneity">
+    <div class="section-label">Why it isn't significant</div>
+    <h2>Not every affected county lost jobs</h2>
+    <div class="prose">
+      <p class="sub">Each dot is one county: its change in average quarterly employment from before Katrina to after. Built from the team's dataset to show the heterogeneity behind the result.</p>
+    </div>
+    <figure class="fig" id="kt-het">
+      <div class="fig-head"><span class="fig-title">Change in average quarterly employment, pre to post</span><div class="key"><span><i class="dot" style="background:var(--c1)"></i>Affected</span><span><i class="dot" style="background:#a3aba3"></i>Unaffected</span></div></div>
+      <div class="plot"><svg viewBox="0 0 880 300" role="img" aria-label="Dot plot of each county's percent change in employment. Most unaffected counties changed between minus 8 and plus 13 percent. Affected counties range from minus 53 percent in St. Bernard and minus 36 percent in Orleans to plus 17 percent, with 13 of 20 gaining jobs."></svg><div class="tip"></div></div>
+      <figcaption class="fig-note" id="kt-het-note">Hover a dot for the county. Louisiana's counties are parishes; names are matched from FIPS codes.</figcaption>
+    </figure>
+    <div class="prose" style="margin-top:20px">
+      <p>Visually, there is a noticeable decline. However, it's not statistically significant when we cluster the standard errors at the county level. This may be due to heterogeneous effects, few clusters, and a limited post-period. The findings suggest there isn't a cleanly uniform impact on employment across affected counties.</p>
+    </div>
+  </section>
+
+  <section class="dsec" id="limits">
+    <div class="section-label">Limitations</div>
+    <h2>What could bias the result</h2>
+    <div class="cards2">
+      <div class="cardx"><span class="badge">Significant risk</span><h3>Spillovers</h3><p>Spillovers to neighboring counties are a major limitation of this analysis, limiting its validity. Unaffected counties may receive displaced workers or aid in recovery efforts.</p></div>
+      <div class="cardx"><span class="badge">Moderate risk</span><h3>Limited post-period, measurement, and timing</h3><p>A longer post-period would increase power and the confidence we'd have in any findings. Any issues in reporting or measurement would affect results.</p></div>
+      <div class="cardx"><span class="badge">Mild risk</span><h3>Heterogeneous employment effects</h3><p>Katrina's impact likely varied across counties. Employment effects may also differ in the short term versus the long term.</p></div>
+      <div class="cardx"><span class="badge">Related study</span><h3>Belasen and Polachek (2007)</h3><p>Uses a difference-in-differences framework on major hurricanes in Florida. Hurricanes are associated with declines in employment in affected counties, while average earnings increase, and effects vary by storm severity and time horizon. <a href="https://docs.iza.org/dp2976.pdf" target="_blank" rel="noopener">Read the paper</a></p></div>
+    </div>
+    <div class="prose" style="margin-top:28px">
+      <h3 class="sub-h">Conclusion</h3>
+      <p>Hurricane Katrina was an insightful natural experiment to understand the effects of natural disasters on labor market outcomes. Our difference-in-differences estimates suggest employment losses in affected counties, but the lack of statistical significance reflects heterogeneity in impact. Results highlight challenges of estimating average effects after large, uneven shocks.</p>
+      <p>To further test the effect of natural disasters on employment, more natural experiments would be needed: hurricanes in other regions of the world, other types of natural disasters in Louisiana, or other labor market outcomes like establishments.</p>
+    </div>
+  </section>
+</main>
+
+<nav class="next" aria-label="More projects"><a href="/projects/maze/"><small>Previous project</small>← Maze Therapeutics: Series E Investment</a><a class="r" href="/projects/chess-ratings/"><small>Next project</small>My Chess Rating, 2009-2026 →</a></nav>
+<footer>© 2026 Suhaas Narayanan</footer>
+<script type="application/json" id="kt-data">{"series":{"q":["2003 Q1","2003 Q2","2003 Q3","2003 Q4","2004 Q1","2004 Q2","2004 Q3","2004 Q4","2005 Q1","2005 Q2","2005 Q3","2005 Q4","2006 Q1","2006 Q2","2006 Q3","2006 Q4","2007 Q1","2007 Q2","2007 Q3","2007 Q4"],"a":[171944,174376,173151,174956,173140,175192,173299,175275,172674,176671,169371,153978,155411,160387,161487,165638,165475,167825,167642,170825],"u":[47066,47542,47025,47907,47166,47907,47425,48238,47819,48757,48638,49601,49225,49989,49498,50272,49962,50777,50517,51260]},"counties":[{"f":22001,"a":1,"n":"Acadia","pre":42037,"post":46743,"pct":11.2},{"f":22003,"a":0,"n":null,"pre":25753,"post":25611,"pct":-0.6},{"f":22005,"a":0,"n":null,"pre":89672,"post":101345,"pct":13.0},{"f":22007,"a":1,"n":"Assumption","pre":15845,"post":14303,"pct":-9.7},{"f":22009,"a":0,"n":null,"pre":32347,"post":32862,"pct":1.6},{"f":22011,"a":0,"n":null,"pre":25393,"post":25421,"pct":0.1},{"f":22013,"a":0,"n":null,"pre":12224,"post":13335,"pct":9.1},{"f":22015,"a":0,"n":null,"pre":111881,"post":123642,"pct":10.5},{"f":22017,"a":0,"n":null,"pre":359201,"post":373736,"pct":4.0},{"f":22019,"a":1,"n":"Calcasieu","pre":247384,"post":255743,"pct":3.4},{"f":22021,"a":0,"n":null,"pre":7319,"post":7753,"pct":5.9},{"f":22023,"a":1,"n":"Cameron","pre":8947,"post":7919,"pct":-11.5},{"f":22025,"a":0,"n":null,"pre":7165,"post":7222,"pct":0.8},{"f":22027,"a":0,"n":null,"pre":13082,"post":12754,"pct":-2.5},{"f":22029,"a":0,"n":null,"pre":15812,"post":16482,"pct":4.2},{"f":22031,"a":0,"n":null,"pre":18475,"post":18121,"pct":-1.9},{"f":22033,"a":1,"n":"East Baton Rouge","pre":737320,"post":781077,"pct":5.9},{"f":22035,"a":0,"n":null,"pre":6255,"post":6328,"pct":1.2},{"f":22037,"a":0,"n":null,"pre":15862,"post":16022,"pct":1.0},{"f":22039,"a":0,"n":null,"pre":23086,"post":23642,"pct":2.4},{"f":22041,"a":0,"n":null,"pre":16296,"post":16392,"pct":0.6},{"f":22043,"a":0,"n":null,"pre":9330,"post":9380,"pct":0.5},{"f":22045,"a":1,"n":"Iberia","pre":92538,"post":102414,"pct":10.7},{"f":22047,"a":0,"n":null,"pre":41886,"post":41667,"pct":-0.5},{"f":22049,"a":0,"n":null,"pre":11120,"post":10549,"pct":-5.1},{"f":22051,"a":1,"n":"Jefferson","pre":634212,"post":575132,"pct":-9.3},{"f":22053,"a":0,"n":null,"pre":24134,"post":25722,"pct":6.6},{"f":22055,"a":0,"n":null,"pre":359052,"post":394787,"pct":10.0},{"f":22057,"a":1,"n":"Lafourche","pre":99572,"post":106941,"pct":7.4},{"f":22059,"a":0,"n":null,"pre":10944,"post":11815,"pct":8.0},{"f":22061,"a":0,"n":null,"pre":52285,"post":54188,"pct":3.6},{"f":22063,"a":1,"n":"Livingston","pre":54245,"post":63372,"pct":16.8},{"f":22065,"a":0,"n":null,"pre":10633,"post":10105,"pct":-5.0},{"f":22067,"a":0,"n":null,"pre":23379,"post":22029,"pct":-5.8},{"f":22069,"a":0,"n":null,"pre":41739,"post":43016,"pct":3.1},{"f":22071,"a":1,"n":"Orleans","pre":735747,"post":471157,"pct":-36.0},{"f":22073,"a":0,"n":null,"pre":212761,"post":213490,"pct":0.3},{"f":22075,"a":1,"n":"Plaquemines","pre":45813,"post":42388,"pct":-7.5},{"f":22077,"a":0,"n":null,"pre":16057,"post":16636,"pct":3.6},{"f":22079,"a":0,"n":null,"pre":170918,"post":181440,"pct":6.2},{"f":22081,"a":0,"n":null,"pre":7064,"post":6475,"pct":-8.3},{"f":22083,"a":0,"n":null,"pre":17586,"post":18059,"pct":2.7},{"f":22085,"a":0,"n":null,"pre":16702,"post":16702,"pct":-0.0},{"f":22087,"a":1,"n":"St. Bernard","pre":51274,"post":24123,"pct":-53.0},{"f":22089,"a":1,"n":"St. Charles","pre":66454,"post":69933,"pct":5.2},{"f":22091,"a":0,"n":null,"pre":4479,"post":4398,"pct":-1.8},{"f":22093,"a":0,"n":null,"pre":21415,"post":21301,"pct":-0.5},{"f":22095,"a":1,"n":"St. John the Baptist","pre":38022,"post":43303,"pct":13.9},{"f":22097,"a":0,"n":null,"pre":68200,"post":74047,"pct":8.6},{"f":22099,"a":0,"n":null,"pre":30698,"post":31011,"pct":1.0},{"f":22101,"a":1,"n":"St. Mary","pre":76545,"post":81845,"pct":6.9},{"f":22103,"a":1,"n":"St. Tammany","pre":196669,"post":214071,"pct":8.8},{"f":22105,"a":1,"n":"Tangipahoa","pre":109118,"post":123855,"pct":13.5},{"f":22107,"a":0,"n":null,"pre":4692,"post":4379,"pct":-6.7},{"f":22109,"a":1,"n":"Terrebonne","pre":148611,"post":166529,"pct":12.1},{"f":22111,"a":0,"n":null,"pre":17652,"post":16257,"pct":-7.9},{"f":22113,"a":1,"n":"Vermilion","pre":39833,"post":40697,"pct":2.2},{"f":22115,"a":0,"n":null,"pre":41431,"post":45307,"pct":9.4},{"f":22117,"a":1,"n":"Washington","pre":32630,"post":32160,"pct":-1.4},{"f":22119,"a":0,"n":null,"pre":37581,"post":40080,"pct":6.7},{"f":22121,"a":0,"n":null,"pre":29830,"post":31354,"pct":5.1},{"f":22123,"a":0,"n":null,"pre":8702,"post":9037,"pct":3.8},{"f":22125,"a":0,"n":null,"pre":16972,"post":16039,"pct":-5.5},{"f":22127,"a":0,"n":null,"pre":14898,"post":15448,"pct":3.7}]}</script>
+<script src="/assets/charts.js?v=2"></script>
+<script>
+(function () {
+  const D = JSON.parse(document.getElementById('kt-data').textContent);
+  const { el, text, tip, point, clear, niceTicks, fmt, responsive } = SC;
+  const C1 = '#1e8458', C2 = '#b8862f', GRAY = '#a3aba3';
+  const size = (svg, W, H) => { svg.setAttribute('viewBox', `0 0 ${W} ${H}`); clear(svg); };
+
+  /* 1. Employment over time, affected vs unaffected */
+  (function () {
+    const S = D.series, n = S.q.length, base = S.q.indexOf('2005 Q2');
+    const fig = document.getElementById('kt-trend'), plot = fig.querySelector('.plot'), svg = plot.querySelector('svg'), T = tip(plot);
+    const note = document.getElementById('kt-trend-note');
+    let mode = 'idx', width = 880;
+    function draw() {
+      const W = width, narrow = W < 600, H = narrow ? 280 : 340, L = narrow ? 50 : 62, R = 12, TOP = 22, B = 36;
+      size(svg, W, H);
+      const val = (arr, i) => mode === 'idx' ? arr[i] / arr[base] * 100 : arr[i];
+      let lo, hi, ticks, lab;
+      if (mode === 'idx') { lo = 84; hi = 106; ticks = [85, 90, 95, 100, 105]; lab = v => v; }
+      else { lo = 0; hi = 200000; ticks = [0, 50000, 100000, 150000, 200000]; lab = v => v ? (v / 1000) + 'K' : '0'; }
+      const x = i => L + i / (n - 1) * (W - L - R), y = v => TOP + (hi - v) / (hi - lo) * (H - TOP - B);
+      ticks.forEach(v => { el('line', { x1: L, x2: W - R, y1: y(v), y2: y(v), class: v === lo ? 'base' : 'gl' }, svg); text(svg, L - 6, y(v) + 4, lab(v), 'ax', 'end'); });
+      S.q.forEach((q, i) => { if (q.endsWith('Q1')) text(svg, x(i), H - B + 18, q.slice(0, 4), 'ax', 'middle'); });
+      const sx = (x(10) + x(11)) / 2;  // between 2005 Q3 and Q4
+      el('line', { x1: sx, x2: sx, y1: TOP - 6, y2: H - B, stroke: '#1c211e', 'stroke-dasharray': '4 4', 'stroke-width': 1 }, svg);
+      text(svg, sx + 6, TOP + 4, 'Katrina, Aug 2005', 'dlab');
+      [['u', C2], ['a', C1]].forEach(([k, c]) => {
+        el('polyline', { points: S[k].map((_, i) => x(i) + ',' + y(val(S[k], i))).join(' '), fill: 'none', stroke: c, 'stroke-width': 2.5, 'stroke-linejoin': 'round' }, svg);
+      });
+      const la = S.a.length - 1;
+      if (!narrow) {
+        text(svg, x(la) - 4, y(val(S.a, la)) + (mode === 'idx' ? 18 : -10), 'Affected', 'dlab', 'end');
+        text(svg, x(la) - 4, y(val(S.u, la)) - 10, 'Unaffected', 'dlab', 'end');
+      }
+      const guide = el('line', { y1: TOP, y2: H - B, stroke: '#1f3a2e', 'stroke-width': 1, opacity: 0 }, svg);
+      const da = el('circle', { r: 4.5, fill: C1, stroke: '#fcfcfa', 'stroke-width': 2, opacity: 0 }, svg);
+      const du = el('circle', { r: 4.5, fill: C2, stroke: '#fcfcfa', 'stroke-width': 2, opacity: 0 }, svg);
+      svg.onmousemove = svg.ontouchstart = ev => {
+        const [mx] = point(svg, ev), i = Math.round((mx - L) / (W - L - R) * (n - 1));
+        if (i < 0 || i >= n) { T.hide(); [guide, da, du].forEach(e => e.setAttribute('opacity', 0)); return; }
+        guide.setAttribute('x1', x(i)); guide.setAttribute('x2', x(i)); guide.setAttribute('opacity', 0.3);
+        da.setAttribute('cx', x(i)); da.setAttribute('cy', y(val(S.a, i))); da.setAttribute('opacity', 1);
+        du.setAttribute('cx', x(i)); du.setAttribute('cy', y(val(S.u, i))); du.setAttribute('opacity', 1);
+        const f = arr => mode === 'idx' ? val(arr, i).toFixed(1) : fmt(arr[i]);
+        T.show(`<b>${S.q[i]}</b><br>Affected: ${f(S.a)}<br>Unaffected: ${f(S.u)}`, x(i), y(val(S.a, i)));
+      };
+      svg.onmouseleave = () => { T.hide(); [guide, da, du].forEach(e => e.setAttribute('opacity', 0)); };
+      note.textContent = mode === 'idx'
+        ? 'Average quarterly employment in each group, indexed to 100 in 2005 Q2 so the two groups can be compared on one scale. The post period in the data starts in 2005 Q4.'
+        : 'Average quarterly employment per county in each group. Affected counties are much larger on average, which is why the indexed view is easier to compare.';
+      fig.querySelectorAll('.seg button').forEach(b => b.setAttribute('aria-pressed', b.dataset.v === mode));
+    }
+    fig.querySelectorAll('.seg button').forEach(b => b.addEventListener('click', () => { mode = b.dataset.v; draw(); }));
+    responsive(plot, W => { width = W; draw(); });
+  })();
+
+  /* 2. Estimate with 95% CI */
+  (function () {
+    const est = -12806, lo = -40703, hi = 15091;
+    const plot = document.querySelector('#kt-ci .plot'), svg = plot.querySelector('svg'), T = tip(plot);
+    responsive(plot, W => {
+      const narrow = W < 600, H = 150, L = 16, R = 16, cy = 70;
+      size(svg, W, H);
+      const x0 = -50000, x1 = 25000, x = v => L + (v - x0) / (x1 - x0) * (W - L - R);
+      (narrow ? [-50000, -25000, 0, 25000] : [-50000, -40000, -30000, -20000, -10000, 0, 10000, 20000]).forEach(v => {
+        el('line', { x1: x(v), x2: x(v), y1: 24, y2: H - 30, class: v === 0 ? 'base' : 'gl' }, svg);
+        text(svg, x(v), H - 12, v === 0 ? '0' : (v > 0 ? '+' : '') + fmt(v / 1000) + 'K', 'ax', 'middle');
+      });
+      text(svg, x(0) + 6, 34, 'No effect', 'ax');
+      el('line', { x1: x(lo), x2: x(hi), y1: cy, y2: cy, stroke: C1, 'stroke-width': 3, 'stroke-linecap': 'round' }, svg);
+      [lo, hi].forEach(v => el('line', { x1: x(v), x2: x(v), y1: cy - 9, y2: cy + 9, stroke: C1, 'stroke-width': 2 }, svg));
+      el('circle', { cx: x(est), cy, r: 8, fill: C2, stroke: '#fcfcfa', 'stroke-width': 2 }, svg);
+      text(svg, x(est), cy - 16, fmt(est), 'dlab', 'middle');
+      text(svg, x(lo), cy + 26, fmt(lo), 'ax', 'start');
+      text(svg, x(hi), cy + 26, '+' + fmt(hi), 'ax', 'end');
+      svg.onmousemove = svg.ontouchstart = () => T.show(`<b>DiD estimate: ${fmt(est)} jobs</b><br>95% CI: ${fmt(lo)} to +${fmt(hi)}<br>p = 0.368`, x(est), cy);
+      svg.onmouseleave = () => T.hide();
+    });
+  })();
+
+  /* 3. County-level heterogeneity */
+  (function () {
+    const C = D.counties;
+    const plot = document.querySelector('#kt-het .plot'), svg = plot.querySelector('svg'), T = tip(plot);
+    const gain = C.filter(c => c.a && c.pct > 0).length;
+    document.getElementById('kt-het-note').textContent = `${gain} of the 20 affected counties gained jobs. Hover a dot for the county. Louisiana's counties are parishes; names are matched from FIPS codes.`;
+    responsive(plot, W => {
+      const narrow = W < 600, L = narrow ? 8 : 110, R = 16, rows = [{ a: 1, label: 'Affected', y: 90 }, { a: 0, label: 'Unaffected', y: 210 }], H = narrow ? 320 : 290;
+      size(svg, W, H);
+      const x0 = -60, x1 = 20, x = v => L + (v - x0) / (x1 - x0) * (W - L - R);
+      [-60, -50, -40, -30, -20, -10, 0, 10, 20].filter(v => !narrow || v % 20 === 0).forEach(v => {
+        el('line', { x1: x(v), x2: x(v), y1: 20, y2: H - 28, class: v === 0 ? 'base' : 'gl' }, svg);
+        text(svg, x(v), H - 10, (v > 0 ? '+' : '') + v + '%', 'ax', 'middle');
+      });
+      const r = narrow ? 5 : 6, pts = [];
+      rows.forEach(row => {
+        if (narrow) text(svg, L, row.y - 48, row.label + ' counties', 'ax-t'); else text(svg, L - 14, row.y + 4, row.label, 'ax-t', 'end');
+        const placed = [];
+        C.filter(c => c.a === row.a).sort((p, q) => Math.abs(p.pct) - Math.abs(q.pct)).forEach(c => {
+          const cx = x(c.pct); let off = 0, k = 0;
+          while (placed.some(p => Math.abs(p.x - cx) < 2 * r + 1 && Math.abs(p.o - off) < 2 * r + 1)) { k++; off = (k % 2 ? 1 : -1) * Math.ceil(k / 2) * (2 * r + 1); }
+          placed.push({ x: cx, o: off });
+          const p = { ...c, X: cx, Y: row.y + off };
+          pts.push(p);
+          el('circle', { cx: p.X, cy: p.Y, r, fill: c.a ? C1 : GRAY, 'fill-opacity': c.a ? 0.9 : 0.75, stroke: '#fcfcfa', 'stroke-width': 1.5 }, svg);
+        });
+      });
+      const named = narrow ? ['St. Bernard', 'Orleans'] : ['St. Bernard', 'Orleans', 'Jefferson', 'East Baton Rouge'];
+      pts.filter(p => p.a && named.includes(p.n)).forEach(p => {
+        const below = p.n === 'Jefferson' || p.n === 'East Baton Rouge' || (narrow && p.n === 'Orleans');
+        text(svg, p.X, p.Y + (below ? r + 15 : -(r + 7)), p.n + ' ' + (p.pct > 0 ? '+' : '') + Math.round(p.pct) + '%', 'dlab', p.n === 'St. Bernard' ? 'start' : 'middle');
+      });
+      const ring = el('circle', { r: r + 3, fill: 'none', stroke: C2, 'stroke-width': 2, opacity: 0 }, svg);
+      svg.onmousemove = svg.ontouchstart = ev => {
+        const [mx, my] = point(svg, ev); let best = null, bd = 300;
+        pts.forEach(p => { const d = (p.X - mx) ** 2 + (p.Y - my) ** 2; if (d < bd) { bd = d; best = p; } });
+        if (!best) { T.hide(); ring.setAttribute('opacity', 0); return; }
+        ring.setAttribute('cx', best.X); ring.setAttribute('cy', best.Y); ring.setAttribute('opacity', 1);
+        T.show(`<b>${best.a ? best.n : 'Unaffected county'}</b> (FIPS ${best.f})<br>${fmt(best.pre)} → ${fmt(best.post)} jobs<br>${best.pct > 0 ? '+' : ''}${best.pct}%`, best.X, best.Y);
+      };
+      svg.onmouseleave = () => { T.hide(); ring.setAttribute('opacity', 0); };
+    });
+  })();
+})();
+</script>
+<script src="/assets/nav.js?v=1" defer></script>
+
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ac4439d40705499ab789aa120376ae2f"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

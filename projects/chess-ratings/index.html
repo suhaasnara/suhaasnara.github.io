@@ -25,14 +25,14 @@
 <link rel="stylesheet" href="/assets/site.css?v=5">
 </head>
 <body>
-<nav class="topnav" aria-label="Main"><a class="brand" href="/">Suhaas Narayanan</a><div class="navlinks"><a href="/">Home</a><a href="/experience/">Experience</a><div class="navdrop is-current"><a href="/projects/" aria-current="page">Projects</a><button type="button" class="navdrop-btn" aria-expanded="false" aria-controls="navdrop-menu" aria-label="Show project pages"><svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button><div class="navdrop-menu" id="navdrop-menu"><span class="navdrop-h">Full write-ups</span><a href="/projects/premier-league/">Goals Scored in the Premier League</a><a href="/projects/maze/">Maze Therapeutics: Series E Investment</a><a href="/projects/chess-ratings/">My Chess Rating, 2009-2026</a><a class="navdrop-all" href="/projects/">All projects →</a></div></div><a href="/chess/">Chess</a></div></nav>
+<nav class="topnav" aria-label="Main"><a class="brand" href="/">Suhaas Narayanan</a><div class="navlinks"><a href="/">Home</a><a href="/experience/">Experience</a><div class="navdrop is-current"><a href="/projects/" aria-current="page">Projects</a><button type="button" class="navdrop-btn" aria-expanded="false" aria-controls="navdrop-menu" aria-label="Show project pages"><svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button><div class="navdrop-menu" id="navdrop-menu"><span class="navdrop-h">Full write-ups</span><a href="/projects/premier-league/">Goals Scored in the Premier League</a><a href="/projects/maze/">Maze Therapeutics: Series E Investment</a><a href="/projects/katrina/">Hurricane Katrina's Impact on Employment</a><a href="/projects/chess-ratings/">My Chess Rating, 2009-2026</a><a class="navdrop-all" href="/projects/">All projects →</a></div></div><a href="/chess/">Chess</a></div></nav>
 <header class="page-hero">
   <a class="crumb" href="/projects/#chess-rating">← All projects</a>
   <div class="label">Data project · Personal</div>
   <h1>My Chess Rating, 2009-2026</h1>
   <p class="lede">Every US Chess rated section I've played, from my first tournament in 2009 to National Master, pulled from the US Chess ratings database and turned into an interactive chart for my chess site.</p>
   <dl class="facts">
-    <div><dt>Data</dt><dd>US Chess ratings API, 177 rated sections</dd></div>
+    <div><dt>Data</dt><dd>US Chess ratings API, <span id="cr-n">177</span> rated sections, updated automatically</dd></div>
     <div><dt>Built</dt><dd>October 2026</dd></div>
     <div><dt>Tools</dt><dd>JavaScript, SVG, JSON</dd></div>
     <div><dt>Live</dt><dd><a href="/chess/#journey/rating" style="color:var(--brass-light)">On the chess site</a></dd></div>
@@ -66,7 +66,7 @@
     <div class="section-label">How it's built</div>
     <h2>From the ratings database to the page</h2>
     <div class="steps">
-      <div><h3>Pull</h3><p>The US Chess ratings site loads its data from a public API. I pulled every page of my rated sections from it. Browsers block the chess site from calling that API directly (no CORS), so the data is saved as a JSON snapshot.</p></div>
+      <div><h3>Pull</h3><p>The US Chess ratings site loads its data from a public API. I pulled every page of my rated sections from it. Browsers block the chess site from calling that API directly (no CORS), so a scheduled GitHub job checks it every day and saves any new results to a JSON file the charts read.</p></div>
       <div><h3>Clean</h3><p>One row per rated section, with the date, event, state, and post-event regular, quick, and blitz ratings. Milestones are stored next to the data, and the stats on the page are checked against official US Chess records.</p></div>
       <div><h3>Draw</h3><p>Plain SVG and JavaScript, no chart library. Regular, quick, and blitz toggles; a compressed axis break for 2019-2023; hover, tap, and arrow-key support; and a full table of results underneath.</p></div>
     </div>
@@ -74,7 +74,7 @@
   </section>
 </main>
 
-<nav class="next" aria-label="More projects"><a href="/projects/maze/"><small>Previous project</small>← Maze Therapeutics: Series E Investment</a><a class="r" href="/projects/"><small>Back</small>All projects</a></nav>
+<nav class="next" aria-label="More projects"><a href="/projects/katrina/"><small>Previous project</small>← Hurricane Katrina's Impact on Employment</a><a class="r" href="/projects/"><small>Back</small>All projects</a></nav>
 <script src="/assets/nav.js?v=1" defer></script>
 <footer>© 2026 Suhaas Narayanan</footer>
 <script src="/assets/charts.js?v=2"></script>
@@ -90,6 +90,7 @@
     const rows = J.rows, reg = rows.filter(r => r.r != null);
     const peak = reg.reduce((a, b) => (b.r > a.r ? b : a));
     const events = new Set(rows.map(r => r.d + '|' + r.e)).size, states = new Set(rows.map(r => r.s));
+    const crn = document.getElementById('cr-n'); if (crn) crn.textContent = rows.length;
     document.getElementById('cr-stats').innerHTML = [
       [rows.length, 'rated sections'], [events, 'tournaments'], [states.size, 'states'], [peak.r, 'career-high regular rating']
     ].map(s => `<div class="stat"><div class="n">${s[0]}</div><div class="l">${s[1]}</div></div>`).join('');
