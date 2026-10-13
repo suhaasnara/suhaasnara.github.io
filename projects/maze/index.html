@@ -159,11 +159,12 @@
 <nav class="next" aria-label="More projects"><a href="/projects/premier-league/"><small>Previous project</small>← Goals Scored in the Premier League</a><a class="r" href="/projects/chess-ratings/"><small>Next project</small>My Chess Rating, 2009–2026 →</a></nav>
 <script src="/assets/nav.js?v=1" defer></script>
 <footer>© 2026 Suhaas Narayanan</footer>
-<script src="/assets/charts.js?v=1"></script>
+<script src="/assets/charts.js?v=2"></script>
 <script>
 (function () {
-  const { el, text, tip, point, clear, niceTicks, fmt } = SC;
+  const { el, text, tip, point, clear, niceTicks, fmt, responsive } = SC;
   const C = ['#1e8458', '#b8862f', '#3d7cc4'];
+  const size = (svg, W, H) => { svg.setAttribute('viewBox', `0 0 ${W} ${H}`); clear(svg); };
 
   /* Revenue: stacked bars by program */
   (function () {
@@ -173,36 +174,40 @@
       { n: 'MZE782 (CKD and PKU)', v: [0, 0, 0, 0, 0, 0, 0, 872.8, 1006.2, 1160.0, 1337.3] },
       { n: 'MZE001 (Shionogi)', v: [150, 0, 22.5, 0, 22.5, 5, 77.2, 15, 79.7, 20, 69.7] }
     ];
-    const plot = document.querySelector('#rev .plot'), svg = plot.querySelector('svg'), T = tip(plot);
-    const W = 880, H = 340, L = 56, R = 16, TOP = 22, B = 34, bw = (W - L - R) / YEARS.length;
     const tot = YEARS.map((_, i) => S.reduce((a, s) => a + s.v[i], 0));
-    const ticks = niceTicks(Math.max(...tot), 4), top = ticks[ticks.length - 1];
-    const y = v => TOP + (1 - v / top) * (H - TOP - B);
-    ticks.forEach(v => { el('line', { x1: L, x2: W - R, y1: y(v), y2: y(v), class: v ? 'gl' : 'base' }, svg); text(svg, L - 8, y(v) + 4, '$' + fmt(v), 'ax', 'end'); });
-    const hl = el('rect', { x: 0, y: TOP - 18, width: bw, height: H - TOP - B + 18, fill: '#1f3a2e', opacity: 0 }, svg);
-    YEARS.forEach((yr, i) => {
-      const cx = L + bw * i + bw / 2, w = bw - 14;
-      text(svg, cx, H - B + 18, yr, 'ax', 'middle');
-      let acc = 0; const segs = S.map((s, k) => ({ k, v: s.v[i] })).filter(d => d.v > 0);
-      segs.forEach((d, j) => {
-        const y0 = y(acc), y1 = y(acc + d.v); acc += d.v;
-        const last = j === segs.length - 1, h = Math.max(0, y0 - y1 - (j ? 2 : 0)), yy = y1;
-        if (h <= 0) return;
-        if (last && h > 4) el('path', { d: `M${cx - w / 2},${yy + h}V${yy + 4}q0,-4 4,-4h${w - 8}q4,0 4,4V${yy + h}Z`, fill: C[d.k] }, svg);
-        else el('rect', { x: cx - w / 2, y: yy, width: w, height: h, fill: C[d.k] }, svg);
+    const plot = document.querySelector('#rev .plot'), svg = plot.querySelector('svg'), T = tip(plot);
+    responsive(plot, W => {
+      const narrow = W < 600, H = narrow ? 280 : 340, L = narrow ? 46 : 56, R = 8, TOP = 24, B = 34, bw = (W - L - R) / YEARS.length;
+      size(svg, W, H);
+      const ticks = niceTicks(Math.max(...tot), 4), top = ticks[ticks.length - 1];
+      const y = v => TOP + (1 - v / top) * (H - TOP - B);
+      ticks.forEach(v => { el('line', { x1: L, x2: W - R, y1: y(v), y2: y(v), class: v ? 'gl' : 'base' }, svg); text(svg, L - 6, y(v) + 4, '$' + fmt(v), 'ax', 'end'); });
+      const hl = el('rect', { x: 0, y: TOP - 18, width: bw, height: H - TOP - B + 18, fill: '#1f3a2e', opacity: 0 }, svg);
+      YEARS.forEach((yr, i) => {
+        const cx = L + bw * i + bw / 2, w = Math.max(8, bw - (narrow ? 6 : 14));
+        text(svg, cx, H - B + 18, narrow ? "'" + String(yr).slice(2) : yr, 'ax', 'middle');
+        let acc = 0; const segs = S.map((s, k) => ({ k, v: s.v[i] })).filter(d => d.v > 0);
+        segs.forEach((d, j) => {
+          const y0 = y(acc), y1 = y(acc + d.v); acc += d.v;
+          const last = j === segs.length - 1, h = Math.max(0, y0 - y1 - (j ? 2 : 0));
+          if (h <= 0) return;
+          if (last && h > 4) el('path', { d: `M${cx - w / 2},${y1 + h}V${y1 + 4}q0,-4 4,-4h${w - 8}q4,0 4,4V${y1 + h}Z`, fill: C[d.k] }, svg);
+          else el('rect', { x: cx - w / 2, y: y1, width: w, height: h, fill: C[d.k] }, svg);
+        });
+        const show = narrow ? (yr === 2024 || yr === 2034) : (yr === 2024 || yr >= 2028);
+        if (show) text(svg, cx, y(tot[i]) - 6, '$' + fmt(tot[i]), 'dlab', yr === 2034 && narrow ? 'end' : 'middle').setAttribute('x', yr === 2034 && narrow ? cx + w / 2 : cx);
       });
-      if (yr === 2024 || yr >= 2028) text(svg, cx, y(tot[i]) - 6, '$' + fmt(tot[i]), 'dlab', 'middle');
+      svg.onmousemove = svg.ontouchstart = ev => {
+        const [mx] = point(svg, ev), i = Math.floor((mx - L) / bw);
+        if (i < 0 || i >= YEARS.length) { T.hide(); hl.setAttribute('opacity', 0); return; }
+        hl.setAttribute('x', L + bw * i); hl.setAttribute('opacity', 0.05);
+        T.show(`<b>${YEARS[i]}</b><br>` + S.map(s => `${s.n}: $${fmt(s.v[i], 1)}M`).join('<br>') + `<br>Total: $${fmt(tot[i], 1)}M`, L + bw * i + bw / 2, y(tot[i]) + 20);
+      };
+      svg.onmouseleave = () => { T.hide(); hl.setAttribute('opacity', 0); };
     });
-    svg.addEventListener('mousemove', ev => {
-      const [mx] = point(svg, ev), i = Math.floor((mx - L) / bw);
-      if (i < 0 || i >= YEARS.length) { T.hide(); hl.setAttribute('opacity', 0); return; }
-      hl.setAttribute('x', L + bw * i); hl.setAttribute('opacity', 0.05);
-      T.show(`<b>${YEARS[i]}</b><br>` + S.map(s => `${s.n}: $${fmt(s.v[i], 1)}M`).join('<br>') + `<br>Total: $${fmt(tot[i], 1)}M`, L + bw * i + bw / 2, y(tot[i]) + 20);
-    });
-    svg.addEventListener('mouseleave', () => { T.hide(); hl.setAttribute('opacity', 0); });
   })();
 
-  /* Valuation: horizontal bars by method */
+  /* Valuation: horizontal bars by method (labels above bars on narrow screens) */
   (function () {
     const M = [
       ['DCF with perpetuity, WACC ~6%', 7627.8],
@@ -212,20 +217,24 @@
     ];
     const avg = M.reduce((a, m) => a + m[1], 0) / M.length;
     const plot = document.querySelector('#val .plot'), svg = plot.querySelector('svg'), T = tip(plot);
-    const W = 880, H = 250, L = 230, R = 70, TOP = 10, B = 30, rh = (H - TOP - B) / M.length;
-    const x = v => L + v / 8000 * (W - L - R);
-    [0, 2000, 4000, 6000, 8000].forEach(v => { el('line', { x1: x(v), x2: x(v), y1: TOP, y2: H - B, class: v ? 'gl' : 'base' }, svg); text(svg, x(v), H - B + 18, '$' + fmt(v), 'ax', 'middle'); });
-    M.forEach((m, i) => {
-      const cy = TOP + rh * i + rh / 2, h = rh - 18, w = x(m[1]) - x(0);
-      text(svg, L - 12, cy + 4, m[0], 'ax', 'end').setAttribute('style', 'font-size:13px;fill:#1c211e');
-      const bar = el('path', { d: `M${x(0)},${cy - h / 2}H${x(0) + w - 4}q4,0 4,4V${cy + h / 2 - 4}q0,4 -4,4H${x(0)}Z`, fill: C[0] }, svg);
-      text(svg, x(m[1]) + 8, cy + 4, '$' + fmt(m[1]), 'dlab');
-      const hit = el('rect', { x: 0, y: cy - rh / 2, width: W, height: rh, fill: 'transparent' }, svg);
-      hit.addEventListener('mousemove', () => T.show(`<b>${m[0]}</b><br>Enterprise value: $${fmt(m[1], 1)}M`, x(m[1]), cy));
-      hit.addEventListener('mouseleave', () => T.hide());
+    responsive(plot, W => {
+      const narrow = W < 600, L = narrow ? 2 : 230, R = 56, TOP = 10, B = 30, rh = narrow ? 56 : 52, H = TOP + rh * M.length + B;
+      size(svg, W, H);
+      const x = v => L + v / 8000 * (W - L - R);
+      (narrow ? [0, 4000, 8000] : [0, 2000, 4000, 6000, 8000]).forEach(v => { el('line', { x1: x(v), x2: x(v), y1: TOP, y2: H - B, class: v ? 'gl' : 'base' }, svg); text(svg, x(v), H - B + 18, '$' + fmt(v), 'ax', v === 0 && narrow ? 'start' : 'middle'); });
+      M.forEach((m, i) => {
+        const top = TOP + rh * i, h = narrow ? 18 : rh - 18, by = narrow ? top + 26 : top + 9, w = x(m[1]) - x(0);
+        const lab = narrow ? text(svg, x(0), top + 18, m[0], 'dlab') : text(svg, L - 12, by + h / 2 + 4, m[0], 'ax', 'end');
+        lab.setAttribute('style', 'font-size:13px;fill:#1c211e;font-weight:400');
+        el('path', { d: `M${x(0)},${by}H${x(0) + w - 4}q4,0 4,4V${by + h - 4}q0,4 -4,4H${x(0)}Z`, fill: C[0] }, svg);
+        text(svg, x(m[1]) + 6, by + h / 2 + 4, '$' + fmt(m[1]), 'dlab');
+        const hit = el('rect', { x: 0, y: top, width: W, height: rh, fill: 'transparent' }, svg);
+        hit.onmousemove = () => T.show(`<b>${m[0]}</b><br>Enterprise value: $${fmt(m[1], 1)}M`, x(m[1]), by + h / 2);
+        hit.onmouseleave = () => T.hide();
+      });
+      el('line', { x1: x(avg), x2: x(avg), y1: TOP - 4, y2: H - B, stroke: C[1], 'stroke-width': 2, 'stroke-dasharray': '5 4' }, svg);
+      text(svg, x(avg) + 6, H - B - 6, 'Average $' + fmt(avg), 'dlab');
     });
-    el('line', { x1: x(avg), x2: x(avg), y1: TOP - 4, y2: H - B, stroke: C[1], 'stroke-width': 2, 'stroke-dasharray': '5 4' }, svg);
-    text(svg, x(avg) + 6, H - B - 6, 'Average $' + fmt(avg), 'dlab');
   })();
 })();
 </script>

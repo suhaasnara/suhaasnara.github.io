@@ -48,5 +48,16 @@
     return out;
   }
   const fmt = (v, d) => v.toLocaleString('en-US', { minimumFractionDigits: d || 0, maximumFractionDigits: d || 0 });
-  window.SC = { el, text, tip, point, clear, niceTicks, fmt };
+  /* Draw at the plot's real width (1 SVG unit = 1 CSS px), so text stays readable on phones.
+     Redraws when the width changes. */
+  function responsive(plot, draw) {
+    let last = 0, t = null;
+    const run = () => {
+      const w = Math.round(Math.min(880, Math.max(300, plot.clientWidth)));
+      if (w === last) return; last = w; draw(w);
+    };
+    run();
+    window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(run, 150); });
+  }
+  window.SC = { el, text, tip, point, clear, niceTicks, fmt, responsive };
 })();
