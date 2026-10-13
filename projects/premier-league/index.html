@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Goals Scored in the Premier League · Suhaas Narayanan</title>
-<meta name="description" content="An NBD model of goals scored by every Premier League player in 2023–24, asking whether the best scorers are really different from each other.">
+<meta name="description" content="An NBD model of goals scored by every Premier League player in 2023-24, asking whether the best scorers are really different from each other.">
 <meta property="og:title" content="Goals Scored in the Premier League · Suhaas Narayanan">
-<meta property="og:description" content="An NBD model of goals scored by every Premier League player in 2023–24, asking whether the best scorers are really different from each other.">
+<meta property="og:description" content="An NBD model of goals scored by every Premier League player in 2023-24, asking whether the best scorers are really different from each other.">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Suhaas Narayanan">
 <meta property="og:image" content="https://suhaasnarayanan.com/og-home.png?v=3">
@@ -22,19 +22,19 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;1,400&family=Source+Sans+3:wght@400;600&display=swap">
-<link rel="stylesheet" href="/assets/site.css?v=4">
+<link rel="stylesheet" href="/assets/site.css?v=5">
 </head>
 <body>
-<nav class="topnav" aria-label="Main"><a class="brand" href="/">Suhaas Narayanan</a><div class="navlinks"><a href="/">Home</a><a href="/experience/">Experience</a><div class="navdrop"><a href="/projects/" aria-current="page">Projects</a><button type="button" class="navdrop-btn" aria-expanded="false" aria-controls="navdrop-menu" aria-label="Show project pages"><svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button><div class="navdrop-menu" id="navdrop-menu"><span class="navdrop-h">Full write-ups</span><a href="/projects/premier-league/">Goals Scored in the Premier League</a><a href="/projects/maze/">Maze Therapeutics: Series E Investment</a><a href="/projects/chess-ratings/">My Chess Rating, 2009–2026</a><a class="navdrop-all" href="/projects/">All projects →</a></div></div><a href="/chess/">Chess</a></div></nav>
+<nav class="topnav" aria-label="Main"><a class="brand" href="/">Suhaas Narayanan</a><div class="navlinks"><a href="/">Home</a><a href="/experience/">Experience</a><div class="navdrop is-current"><a href="/projects/" aria-current="page">Projects</a><button type="button" class="navdrop-btn" aria-expanded="false" aria-controls="navdrop-menu" aria-label="Show project pages"><svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button><div class="navdrop-menu" id="navdrop-menu"><span class="navdrop-h">Full write-ups</span><a href="/projects/premier-league/">Goals Scored in the Premier League</a><a href="/projects/maze/">Maze Therapeutics: Series E Investment</a><a href="/projects/chess-ratings/">My Chess Rating, 2009-2026</a><a class="navdrop-all" href="/projects/">All projects →</a></div></div><a href="/chess/">Chess</a></div></nav>
 <header class="page-hero">
   <a class="crumb" href="/projects/#premier-league">← All projects</a>
   <div class="label">Probability models · MKTG/STAT 4760 · Solo</div>
   <h1>Goals Scored in the Premier League</h1>
-  <p class="lede">Is there a best of the best? An NBD model of every goal scored in the 2023–24 Premier League season.</p>
+  <p class="lede">Is there a best of the best? An NBD model of every goal scored in the 2023-24 Premier League season.</p>
   <dl class="facts">
     <div><dt>Course</dt><dd>MKTG/STAT 4760, Wharton</dd></div>
     <div><dt>Team</dt><dd>Solo project</dd></div>
-    <div><dt>Data</dt><dd>Stathead FBref, 2023–24 season, 570 players</dd></div>
+    <div><dt>Data</dt><dd>Stathead FBref, 2023-24 season, 570 players</dd></div>
     <div><dt>Method</dt><dd>NBD with varying time, fit by MLE</dd></div>
   </dl>
 </header>
@@ -56,7 +56,7 @@
     <div class="prose">
       <p>Count data is frequently modeled using the Poisson distribution, but there are some risks with that. The Negative Binomial Distribution accounts for hyper dispersion of data, a key concern in many real-life data sets.</p>
       <p>After modeling a few datasets, this soccer dataset proved to be the most interesting. Previous datasets used were accidents in explosive-making factories; NBA 2-point field goals, blocks, and steals; and other soccer data sets. These were either not fit well by NBD models or proved to be unwieldy (Giannis and Jokic score a lot of 2s).</p>
-      <p>The data comes from Stathead FBref: Premier League, 2023–24 season, every player with at least one minute played. In terms of understanding the story, here are the building blocks.</p>
+      <p>The data comes from Stathead FBref: Premier League, 2023-24 season, every player with at least one minute played. In terms of understanding the story, here are the building blocks.</p>
       <ul>
         <li><b>Individual</b> = one soccer player (i.e., Haaland)</li>
         <li><b>Observed individual behavior</b> = goals per individual (i.e., 27)</li>
@@ -70,10 +70,10 @@
     </div>
     <figure class="fig" id="scatter">
       <div class="fig-head">
-        <span class="fig-title">Goals against minutes played, 2023–24</span>
+        <span class="fig-title">Goals against minutes played, 2023-24</span>
         <div class="key"><span><i class="dot" style="background:var(--c1)"></i>Forwards and midfielders</span><span><i class="dot" style="background:#a3aba3"></i>Defenders and goalkeepers</span></div>
       </div>
-      <div class="plot"><svg viewBox="0 0 880 400" role="img" aria-label="Scatter plot of goals scored against minutes played for 570 Premier League players in 2023–24. Most players score few goals; Haaland stands apart with 27 goals in 2,552 minutes."></svg><div class="tip"></div></div>
+      <div class="plot"><svg viewBox="0 0 880 400" role="img" aria-label="Scatter plot of goals scored against minutes played for 570 Premier League players in 2023-24. Most players score few goals; Haaland stands apart with 27 goals in 2,552 minutes."></svg><div class="tip"></div></div>
       <figcaption class="fig-note">One dot per player. Hover for names.</figcaption>
     </figure>
     <div class="prose">
@@ -132,7 +132,7 @@
       <div class="calc"><label for="spin-player" class="fig-title">Player</label><select id="spin-player"></select></div>
       <div class="calc-out" id="spin-out"></div>
       <div class="plot"><svg viewBox="0 0 880 260" role="img" aria-label="Distribution of goals the model expects for the selected player next season, with this season's total marked."></svg><div class="tip"></div></div>
-      <div class="key" style="margin-top:8px"><span><i style="background:var(--c1)"></i>Chance of each goal total next season</span><span><i class="ln" style="background:var(--c2)"></i>Goals in 2023–24</span></div>
+      <div class="key" style="margin-top:8px"><span><i style="background:var(--c1)"></i>Chance of each goal total next season</span><span><i class="ln" style="background:var(--c2)"></i>Goals in 2023-24</span></div>
       <figcaption class="fig-note">The model pulls every player back toward the group, so big seasons shrink and quiet ones grow. The shaded range covers 80% of outcomes.</figcaption>
     </figure>
   </section>
@@ -141,7 +141,7 @@
     <div class="section-label">Limitations and next steps</div>
     <h2>Where this goes next</h2>
     <div class="prose">
-      <p>It's important to note that this is specific to the Premier League in the 2023–24 season. This connects back to the fundamental business problem: is there a best of the best? The analysis for the selected situation indicates a potential no among forwards and midfielders.</p>
+      <p>It's important to note that this is specific to the Premier League in the 2023-24 season. This connects back to the fundamental business problem: is there a best of the best? The analysis for the selected situation indicates a potential no among forwards and midfielders.</p>
       <p>To begin with, this analysis should be repeated across seasons and in different leagues, presenting a larger outlook on soccer in general. It would also be interesting to try to predict future seasons' goal distributions using this model. Next, introducing covariates (age, starts, subs/unsubs, etc.) could potentially improve the model or glean useful insights. Other subgroups could produce interesting results as well, such as team or nation.</p>
       <p>From there, it would be interesting to compare this with other sports. Is there similar heterogeneity in the NBA, NFL, or so on? In class, it was mentioned that field goal kickers may be homogeneous at the top (similar to what is seen here). What sports have high heterogeneity at the top, which ones don't, and why?</p>
       <p class="pull">Haaland may still be better than everyone else, but on the whole, the top forwards and midfielders may be more similar to each other than different.</p>
@@ -199,7 +199,7 @@
       fm: 'This FW and MF model still fits the data well, but there is a key change in the parameters. r is now greater than 1, indicating overall homogeneity and an increase in homogeneity compared to the larger dataset.',
       fmspike: 'Interestingly, there is a portion of HCNBs (0.02 of the population). There may be some conjecturing of midfielders who prefer to assist forwards or other midfielders than take a shot at the goal. However, the spike does not help the model significantly.'
     };
-    const SHOW = { nbd: ['0.84', '544', '—', '0.96'], spike: ['0.84', '544', '0%', '0.92'], fm: ['1.59', '682', '—', '0.62'], fmspike: ['1.68', '711', '2%', '0.55'] };
+    const SHOW = { nbd: ['0.84', '544', 'N/A', '0.96'], spike: ['0.84', '544', '0%', '0.92'], fm: ['1.59', '682', 'N/A', '0.62'], fmspike: ['1.68', '711', '2%', '0.55'] };
     const fig = document.getElementById('hist'), plot = fig.querySelector('.plot'), svg = plot.querySelector('svg'), T = tip(plot);
     const stats = document.getElementById('hist-stats'), note = document.getElementById('hist-note');
     const cats = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10+'];
@@ -259,9 +259,9 @@
       const mean = (r + x) * t / (a + t);
       let c = 0, lo = null, hi = null;
       ps.forEach((v, k) => { c += v; if (lo === null && c >= 0.1) lo = k; if (hi === null && c >= 0.9) hi = k; });
-      out.innerHTML = `<div class="stat"><div class="n">${x}</div><div class="l">goals in ${fmt(t)} minutes, 2023–24</div></div>` +
+      out.innerHTML = `<div class="stat"><div class="n">${x}</div><div class="l">goals in ${fmt(t)} minutes, 2023-24</div></div>` +
         `<div class="stat"><div class="n">${mean.toFixed(1)}</div><div class="l">expected goals with the same minutes</div></div>` +
-        `<div class="stat"><div class="n">${lo}–${hi}</div><div class="l">80% range</div></div>`;
+        `<div class="stat"><div class="n">${lo}-${hi}</div><div class="l">80% range</div></div>`;
       const W = width, narrow = W < 600, H = narrow ? 220 : 260, L = 40, R = 8, TOP = 22, B = 40;
       size(svg, W, H);
       const pmax = Math.max(...ps), ticks = niceTicks(pmax * 100, 4), top = ticks[ticks.length - 1];
@@ -274,7 +274,7 @@
       ps.forEach((v, k) => { const tp = y(v), h = y(0) - tp; if (h > 0.5) el('rect', { x: xk(k) - bw / 2 + (narrow ? 0.5 : 1), y: tp, width: Math.max(1, bw - (narrow ? 1 : 2)), height: h, rx: Math.min(narrow ? 1.5 : 3, h / 2), fill: C1 }, svg); });
       const ax = xk(Math.min(x, KMAX)), right = ax > W * 0.7;
       el('line', { x1: ax, x2: ax, y1: TOP - 6, y2: H - B, stroke: C2, 'stroke-width': 2 }, svg);
-      text(svg, ax + (right ? -6 : 6), TOP + 6, '2023–24: ' + x, 'dlab', right ? 'end' : 'start');
+      text(svg, ax + (right ? -6 : 6), TOP + 6, '2023-24: ' + x, 'dlab', right ? 'end' : 'start');
       svg.onmousemove = svg.ontouchstart = ev => {
         const [mx] = point(svg, ev), k = Math.round((mx - L - bw / 2) / bw);
         if (k < 0 || k > KMAX) return T.hide();

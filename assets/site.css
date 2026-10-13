@@ -330,3 +330,8 @@
   .full-cta:hover { background: var(--accent); color: var(--white); }
   .kicker .fw { display: inline-block; margin-left: 8px; padding: 2px 7px; background: #f3ecdf; color: var(--brass-text); border-radius: 2px; letter-spacing: 0.1em; }
   .pj-card .pj-link { display: inline-block; margin: 0 0 14px; }
+  /* Projects tab underline spans the label and arrow, with the same side padding as the other tabs */
+  .navlinks .navdrop > a[aria-current="page"] { box-shadow: none; }
+  .navdrop.is-current { box-shadow: inset 0 -2px 0 var(--brass); }
+  .navdrop.is-current .navdrop-btn { color: var(--forest); }
+  .navdrop-btn { padding: 8px 12px 8px 2px; }
