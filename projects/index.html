@@ -25,16 +25,67 @@
 <link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
-<nav class="topnav" aria-label="Main"><a class="brand" href="/">Suhaas Narayanan</a><div class="navlinks"><a href="/">Home</a><a href="/experience/">Experience</a><a href="/projects/" aria-current="page">Projects</a><a href="/chess/">Chess</a></div></nav>
+<nav class="topnav" aria-label="Main"><a class="brand" href="/">Suhaas Narayanan</a><div class="navlinks"><a href="/">Home</a><a href="/experience/">Experience</a><div class="navdrop"><a href="/projects/" aria-current="page">Projects</a><button type="button" class="navdrop-btn" aria-expanded="false" aria-controls="navdrop-menu" aria-label="Show project pages"><svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button><div class="navdrop-menu" id="navdrop-menu"><span class="navdrop-h">Full write-ups</span><a href="/projects/premier-league/">Goals Scored in the Premier League</a><a href="/projects/maze/">Maze Therapeutics: Series E Investment</a><a href="/projects/chess-ratings/">My Chess Rating, 2009–2026</a><a class="navdrop-all" href="/projects/">All projects →</a></div></div><a href="/chess/">Chess</a></div></nav>
 
 <header class="page-hero">
   <div class="label">Selected Work</div>
   <h1>Projects</h1>
   <p class="lede">A few projects from school and on my own.</p>
-  <nav class="jump" aria-label="Projects on this page"><a href="#melbourne">Predicting Real Estate Prices</a><a href="#premier-league">Goals Scored in the Premier League</a><a href="#katrina">Hurricane Katrina's Impact on Employment</a><a href="#docusign">LBO Proposal</a><a href="#maze">Maze Therapeutics</a><a href="#chess-rating">My Chess Rating, 2009–2026</a></nav>
+  <div class="jump-group"><div class="jump-label">Full write-ups</div><nav class="jump" aria-label="Full project pages"><a class="full" href="/projects/premier-league/">Goals Scored in the Premier League →</a><a class="full" href="/projects/maze/">Maze Therapeutics →</a><a class="full" href="/projects/chess-ratings/">My Chess Rating, 2009–2026 →</a></nav></div>
+  <div class="jump-group"><div class="jump-label">On this page</div><nav class="jump" aria-label="Projects on this page"><a href="#premier-league">Premier League</a><a href="#maze">Maze Therapeutics</a><a href="#chess-rating">Chess Rating</a><a href="#melbourne">Predicting Real Estate Prices</a><a href="#katrina">Hurricane Katrina's Impact on Employment</a><a href="#docusign">LBO Proposal</a></nav></div>
 </header>
 
 <main>
+  <section class="proj" id="premier-league">
+    <div class="kicker">Probability models · MKTG/STAT 4760<span class="fw">Full write-up</span></div>
+    <h2><a href="/projects/premier-league/">Goals Scored in the Premier League</a></h2>
+    <p class="context">Is there a best of the best?</p>
+    <a class="full-cta" href="/projects/premier-league/">Read the full project →</a>
+    <div class="proj-grid">
+      <figure class="proj-fig"><svg class="pj-svg" viewBox="0 0 360 150" role="img" aria-label="Bar chart of Premier League players by goals scored in 2023–24, actual versus the NBD model. The model fits closely: 272 players scored 0 goals (model: 271), 99 scored 1 (model: 96), and 30 scored 10 or more (model: 25)."><line x1="26" x2="354" y1="128.0" y2="128.0" class="pj-grid"/><text x="21" y="131.5" class="pj-ax" text-anchor="end">0</text><line x1="26" x2="354" y1="85.9" y2="85.9" class="pj-grid"/><text x="21" y="89.4" class="pj-ax" text-anchor="end">100</text><line x1="26" x2="354" y1="43.7" y2="43.7" class="pj-grid"/><text x="21" y="47.2" class="pj-ax" text-anchor="end">200</text><rect x="29.0" y="13.4" width="23.8" height="114.6" rx="2" class="pj-bar"/><circle cx="40.9" cy="14.0" r="3" class="pj-dot"/><text x="40.9" y="143" class="pj-ax" text-anchor="middle">0</text><rect x="58.8" y="86.3" width="23.8" height="41.7" rx="2" class="pj-bar"/><circle cx="70.7" cy="87.5" r="3" class="pj-dot"/><text x="70.7" y="143" class="pj-ax" text-anchor="middle">1</text><rect x="88.6" y="104.8" width="23.8" height="23.2" rx="2" class="pj-bar"/><circle cx="100.5" cy="104.2" r="3" class="pj-dot"/><text x="100.5" y="143" class="pj-ax" text-anchor="middle">2</text><rect x="118.5" y="113.7" width="23.8" height="14.3" rx="2" class="pj-bar"/><circle cx="130.4" cy="112.3" r="3" class="pj-dot"/><text x="130.4" y="143" class="pj-ax" text-anchor="middle">3</text><rect x="148.3" y="117.9" width="23.8" height="10.1" rx="2" class="pj-bar"/><circle cx="160.2" cy="117.0" r="3" class="pj-dot"/><text x="160.2" y="143" class="pj-ax" text-anchor="middle">4</text><rect x="178.1" y="121.3" width="23.8" height="6.7" rx="2" class="pj-bar"/><circle cx="190.0" cy="120.0" r="3" class="pj-dot"/><text x="190.0" y="143" class="pj-ax" text-anchor="middle">5</text><rect x="207.9" y="122.1" width="23.8" height="5.9" rx="2" class="pj-bar"/><circle cx="219.8" cy="122.1" r="3" class="pj-dot"/><text x="219.8" y="143" class="pj-ax" text-anchor="middle">6</text><rect x="237.7" y="122.9" width="23.8" height="5.1" rx="2" class="pj-bar"/><circle cx="249.6" cy="123.5" r="3" class="pj-dot"/><text x="249.6" y="143" class="pj-ax" text-anchor="middle">7</text><rect x="267.5" y="124.2" width="23.8" height="3.8" rx="2" class="pj-bar"/><circle cx="279.5" cy="124.5" r="3" class="pj-dot"/><text x="279.5" y="143" class="pj-ax" text-anchor="middle">8</text><rect x="297.4" y="125.9" width="23.8" height="2.1" rx="2" class="pj-bar"/><circle cx="309.3" cy="125.3" r="3" class="pj-dot"/><text x="309.3" y="143" class="pj-ax" text-anchor="middle">9</text><rect x="327.2" y="115.4" width="23.8" height="12.6" rx="2" class="pj-bar"/><circle cx="339.1" cy="117.4" r="3" class="pj-dot"/><text x="339.1" y="143" class="pj-ax" text-anchor="middle">10+</text></svg><div class="pj-key"><span><i class="pj-k-bar"></i>Players (actual)</span><span><i class="pj-k-dot"></i>NBD model</span><span>Goals in 2023–24</span></div><figcaption>Every Premier League player with at least one minute in 2023–24, by goals scored. The NBD model fits closely (p = 0.96).</figcaption></figure>
+      <div class="proj-text">
+      <h3>The question</h3>
+      <p>The top level in sports pits the best players against each other, and there's considerable money to scout and secure them. Are the best different from each other? These are common questions for any sports fan, but it is also a key business problem. Do the Lakers trade for Doncic and give up Anthony Davis in return? Is Haaland truly better than other scorers, or is he like the rest of the Premier League?</p>
+      <h3>What I did</h3>
+      <p>These are questions of heterogeneity, the differences between people. Goals are key count data to investigate this. Count data is frequently modeled using the Poisson distribution, but the Negative Binomial Distribution accounts for hyper dispersion of data, a key concern in many real-life data sets. I applied NBD models with varying time (minutes played) to the 2023–24 season, then looked at forwards and midfielders on their own. (Earlier datasets didn't make the cut. Giannis and Jokic score a lot of 2s.)</p>
+      <h3>What I found</h3>
+      <p>Across the full dataset, a low r indicates high heterogeneity, meaning the soccer players are different from one another. But the forwards and midfielders subgroup revealed a higher r (greater than 1), meaning they're similar to each other. Pretty good years for a striker may be a lucky spin of the Poisson wheel. Haaland may still be better than everyone else, but on the whole, the top forwards and midfielders may be more similar to each other than different.</p>
+      </div>
+    </div>
+  </section>
+  <section class="proj" id="maze">
+    <div class="kicker">Venture capital · FNCE 2500 · Team of five<span class="fw">Full write-up</span></div>
+    <h2><a href="/projects/maze/">Maze Therapeutics: Series E Investment</a></h2>
+    <p class="context">An investment proposal for Maze Therapeutics, a clinical-stage precision medicine startup.</p>
+    <a class="full-cta" href="/projects/maze/">Read the full project →</a>
+    <div class="proj-grid">
+      <figure class="proj-fig"><svg class="pj-svg" viewBox="0 0 520 210" role="img" aria-label="Bar chart of Maze Therapeutics risk-adjusted revenue in our model, in millions of dollars: $150 million in 2024 from the Shionogi upfront payment, little in 2025 to 2027, then rising to $617 million in 2028 and $3.76 billion by 2034."><line x1="44" x2="512" y1="184.0" y2="184.0" class="pj-gl"/><text x="38" y="187.5" class="pj-ax" text-anchor="end">$0</text><line x1="44" x2="512" y1="141.5" y2="141.5" class="pj-gl"/><text x="38" y="145.0" class="pj-ax" text-anchor="end">$1B</text><line x1="44" x2="512" y1="99.0" y2="99.0" class="pj-gl"/><text x="38" y="102.5" class="pj-ax" text-anchor="end">$2B</text><line x1="44" x2="512" y1="56.5" y2="56.5" class="pj-gl"/><text x="38" y="60.0" class="pj-ax" text-anchor="end">$3B</text><line x1="44" x2="512" y1="14.0" y2="14.0" class="pj-gl"/><text x="38" y="17.5" class="pj-ax" text-anchor="end">$4B</text><rect x="48.0" y="177.6" width="34.5" height="6.4" rx="2" class="pj-soft"/><text x="65.3" y="202" class="pj-ax" text-anchor="middle">2024</text><text x="107.8" y="202" class="pj-ax" text-anchor="middle">25</text><rect x="133.1" y="183.1" width="34.5" height="0.9" rx="2" class="pj-bar"/><text x="150.4" y="202" class="pj-ax" text-anchor="middle">26</text><text x="192.9" y="202" class="pj-ax" text-anchor="middle">27</text><rect x="218.2" y="157.8" width="34.5" height="26.2" rx="2" class="pj-bar"/><text x="235.5" y="202" class="pj-ax" text-anchor="middle">28</text><rect x="260.7" y="152.0" width="34.5" height="32.0" rx="2" class="pj-bar"/><text x="278.0" y="202" class="pj-ax" text-anchor="middle">29</text><rect x="303.3" y="140.7" width="34.5" height="43.3" rx="2" class="pj-bar"/><text x="320.5" y="202" class="pj-ax" text-anchor="middle">30</text><rect x="345.8" y="96.0" width="34.5" height="88.0" rx="2" class="pj-bar"/><text x="363.1" y="202" class="pj-ax" text-anchor="middle">31</text><rect x="388.4" y="74.6" width="34.5" height="109.4" rx="2" class="pj-bar"/><text x="405.6" y="202" class="pj-ax" text-anchor="middle">32</text><rect x="430.9" y="54.3" width="34.5" height="129.7" rx="2" class="pj-bar"/><text x="448.2" y="202" class="pj-ax" text-anchor="middle">33</text><rect x="473.5" y="24.2" width="34.5" height="159.8" rx="2" class="pj-bar"/><text x="490.7" y="202" class="pj-ax" text-anchor="middle">2034</text><text x="490.7" y="18.2" class="pj-val" text-anchor="middle">$3.76B</text></svg><figcaption>Risk-adjusted revenue in our model, in millions. 2024 is the upfront payment from the Shionogi licensing deal; the rest is forecast.</figcaption></figure>
+      <div class="proj-text">
+      <h3>Why Maze</h3>
+      <p>Maze's Compass™ platform integrates variant functionalization with big biobank data and AI, creating defensible intellectual property and accelerating pipeline development. Shionogi's $150M upfront and $600M milestones licensing deal validates Maze's asset quality, and our model projects risk-adjusted revenues reaching ~$3.7B by 2034.</p>
+      <h3>The deal</h3>
+      <p>Our valuation model triangulates value through a risk-adjusted DCF and comparables, and values Maze at $3.88 billion pre-money. We opened with a first offer term sheet at $13.60 per share for 4.0% ownership. Setting LP value equal to LP cost gives a breakeven of $10.00 per share, so a $160M investment secures at least 9% post-money ownership.</p>
+      <ul class="results">
+        <li><span>Internal valuation (pre-money)</span><b>$3.88B</b></li>
+        <li><span>First offer</span><b>$13.60 / share · 4.0%</b></li>
+        <li class="best"><span>Breakeven</span><b>$10.00 / share · 9.1%</b></li>
+      </ul>
+      </div>
+    </div>
+  </section>
+  <section class="proj" id="chess-rating">
+    <div class="kicker">Personal project · JavaScript · Data visualization<span class="fw">Full write-up</span></div>
+    <h2><a href="/projects/chess-ratings/">My Chess Rating, 2009–2026</a></h2>
+    <p class="context">Every rated tournament I've played since 2009, from the US Chess records.</p>
+    <a class="full-cta" href="/projects/chess-ratings/">Read the full project →</a>
+    <div class="proj-grid">
+      <figure class="proj-fig"><div class="pj-spark" id="pj-spark"></div><figcaption>My regular rating across 177 rated results. The gap is 2019–2023, when I wasn't playing rated chess.</figcaption></figure>
+      <div class="proj-text">
+      <h3>What I built</h3>
+      <p>An interactive chart on my chess site that pulls every rated result from the US Chess ratings data: regular, quick, and blitz, with the key moments of my comeback marked on the line and a full table of results underneath.</p>
+      </div>
+    </div>
+  </section>
   <section class="proj" id="melbourne">
     <div class="kicker">Machine learning · STAT 4020 · Team of four</div>
     <h2>Predicting Real Estate Prices</h2>
@@ -54,23 +105,6 @@
       </ul>
       <h3>What we found</h3>
       <p>Machine learning models, specifically XGBoost, outperform traditional regression methods. Interpretability remains a challenge, but accuracy is prioritized. The most impactful predictors were council area, region, bathrooms, and rooms. Region and council area may capture location-based factors like infrastructure, desirability, zoning regulations, and economic activity.</p>
-      </div>
-    </div>
-  </section>
-  <section class="proj" id="premier-league">
-    <div class="kicker">Probability models · MKTG/STAT 4760</div>
-    <h2><a href="/projects/premier-league/">Goals Scored in the Premier League</a></h2>
-    <p class="context">Is there a best of the best?</p>
-    <div class="proj-grid">
-      <figure class="proj-fig"><svg class="pj-svg" viewBox="0 0 360 150" role="img" aria-label="Bar chart of Premier League players by goals scored in 2023–24, actual versus the NBD model. The model fits closely: 272 players scored 0 goals (model: 271), 99 scored 1 (model: 96), and 30 scored 10 or more (model: 25)."><line x1="26" x2="354" y1="128.0" y2="128.0" class="pj-grid"/><text x="21" y="131.5" class="pj-ax" text-anchor="end">0</text><line x1="26" x2="354" y1="85.9" y2="85.9" class="pj-grid"/><text x="21" y="89.4" class="pj-ax" text-anchor="end">100</text><line x1="26" x2="354" y1="43.7" y2="43.7" class="pj-grid"/><text x="21" y="47.2" class="pj-ax" text-anchor="end">200</text><rect x="29.0" y="13.4" width="23.8" height="114.6" rx="2" class="pj-bar"/><circle cx="40.9" cy="14.0" r="3" class="pj-dot"/><text x="40.9" y="143" class="pj-ax" text-anchor="middle">0</text><rect x="58.8" y="86.3" width="23.8" height="41.7" rx="2" class="pj-bar"/><circle cx="70.7" cy="87.5" r="3" class="pj-dot"/><text x="70.7" y="143" class="pj-ax" text-anchor="middle">1</text><rect x="88.6" y="104.8" width="23.8" height="23.2" rx="2" class="pj-bar"/><circle cx="100.5" cy="104.2" r="3" class="pj-dot"/><text x="100.5" y="143" class="pj-ax" text-anchor="middle">2</text><rect x="118.5" y="113.7" width="23.8" height="14.3" rx="2" class="pj-bar"/><circle cx="130.4" cy="112.3" r="3" class="pj-dot"/><text x="130.4" y="143" class="pj-ax" text-anchor="middle">3</text><rect x="148.3" y="117.9" width="23.8" height="10.1" rx="2" class="pj-bar"/><circle cx="160.2" cy="117.0" r="3" class="pj-dot"/><text x="160.2" y="143" class="pj-ax" text-anchor="middle">4</text><rect x="178.1" y="121.3" width="23.8" height="6.7" rx="2" class="pj-bar"/><circle cx="190.0" cy="120.0" r="3" class="pj-dot"/><text x="190.0" y="143" class="pj-ax" text-anchor="middle">5</text><rect x="207.9" y="122.1" width="23.8" height="5.9" rx="2" class="pj-bar"/><circle cx="219.8" cy="122.1" r="3" class="pj-dot"/><text x="219.8" y="143" class="pj-ax" text-anchor="middle">6</text><rect x="237.7" y="122.9" width="23.8" height="5.1" rx="2" class="pj-bar"/><circle cx="249.6" cy="123.5" r="3" class="pj-dot"/><text x="249.6" y="143" class="pj-ax" text-anchor="middle">7</text><rect x="267.5" y="124.2" width="23.8" height="3.8" rx="2" class="pj-bar"/><circle cx="279.5" cy="124.5" r="3" class="pj-dot"/><text x="279.5" y="143" class="pj-ax" text-anchor="middle">8</text><rect x="297.4" y="125.9" width="23.8" height="2.1" rx="2" class="pj-bar"/><circle cx="309.3" cy="125.3" r="3" class="pj-dot"/><text x="309.3" y="143" class="pj-ax" text-anchor="middle">9</text><rect x="327.2" y="115.4" width="23.8" height="12.6" rx="2" class="pj-bar"/><circle cx="339.1" cy="117.4" r="3" class="pj-dot"/><text x="339.1" y="143" class="pj-ax" text-anchor="middle">10+</text></svg><div class="pj-key"><span><i class="pj-k-bar"></i>Players (actual)</span><span><i class="pj-k-dot"></i>NBD model</span><span>Goals in 2023–24</span></div><figcaption>Every Premier League player with at least one minute in 2023–24, by goals scored. The NBD model fits closely (p = 0.96).</figcaption></figure>
-      <div class="proj-text">
-      <h3>The question</h3>
-      <p>The top level in sports pits the best players against each other, and there's considerable money to scout and secure them. Are the best different from each other? These are common questions for any sports fan, but it is also a key business problem. Do the Lakers trade for Doncic and give up Anthony Davis in return? Is Haaland truly better than other scorers, or is he like the rest of the Premier League?</p>
-      <h3>What I did</h3>
-      <p>These are questions of heterogeneity, the differences between people. Goals are key count data to investigate this. Count data is frequently modeled using the Poisson distribution, but the Negative Binomial Distribution accounts for hyper dispersion of data, a key concern in many real-life data sets. I applied NBD models with varying time (minutes played) to the 2023–24 season, then looked at forwards and midfielders on their own. (Earlier datasets didn't make the cut. Giannis and Jokic score a lot of 2s.)</p>
-      <h3>What I found</h3>
-      <p>Across the full dataset, a low r indicates high heterogeneity, meaning the soccer players are different from one another. But the forwards and midfielders subgroup revealed a higher r (greater than 1), meaning they're similar to each other. Pretty good years for a striker may be a lucky spin of the Poisson wheel. Haaland may still be better than everyone else, but on the whole, the top forwards and midfielders may be more similar to each other than different.</p>
-      <p><a class="more" href="/projects/premier-league/">Read the full project →</a></p>
       </div>
     </div>
   </section>
@@ -113,41 +147,9 @@
       </div>
     </div>
   </section>
-  <section class="proj" id="maze">
-    <div class="kicker">Venture capital · FNCE 2500 · Team of five</div>
-    <h2><a href="/projects/maze/">Maze Therapeutics: Series E Investment</a></h2>
-    <p class="context">An investment proposal for Maze Therapeutics, a clinical-stage precision medicine startup.</p>
-    <div class="proj-grid">
-      <figure class="proj-fig"><svg class="pj-svg" viewBox="0 0 520 210" role="img" aria-label="Bar chart of Maze Therapeutics risk-adjusted revenue in our model, in millions of dollars: $150 million in 2024 from the Shionogi upfront payment, little in 2025 to 2027, then rising to $617 million in 2028 and $3.76 billion by 2034."><line x1="44" x2="512" y1="184.0" y2="184.0" class="pj-gl"/><text x="38" y="187.5" class="pj-ax" text-anchor="end">$0</text><line x1="44" x2="512" y1="141.5" y2="141.5" class="pj-gl"/><text x="38" y="145.0" class="pj-ax" text-anchor="end">$1B</text><line x1="44" x2="512" y1="99.0" y2="99.0" class="pj-gl"/><text x="38" y="102.5" class="pj-ax" text-anchor="end">$2B</text><line x1="44" x2="512" y1="56.5" y2="56.5" class="pj-gl"/><text x="38" y="60.0" class="pj-ax" text-anchor="end">$3B</text><line x1="44" x2="512" y1="14.0" y2="14.0" class="pj-gl"/><text x="38" y="17.5" class="pj-ax" text-anchor="end">$4B</text><rect x="48.0" y="177.6" width="34.5" height="6.4" rx="2" class="pj-soft"/><text x="65.3" y="202" class="pj-ax" text-anchor="middle">2024</text><text x="107.8" y="202" class="pj-ax" text-anchor="middle">25</text><rect x="133.1" y="183.1" width="34.5" height="0.9" rx="2" class="pj-bar"/><text x="150.4" y="202" class="pj-ax" text-anchor="middle">26</text><text x="192.9" y="202" class="pj-ax" text-anchor="middle">27</text><rect x="218.2" y="157.8" width="34.5" height="26.2" rx="2" class="pj-bar"/><text x="235.5" y="202" class="pj-ax" text-anchor="middle">28</text><rect x="260.7" y="152.0" width="34.5" height="32.0" rx="2" class="pj-bar"/><text x="278.0" y="202" class="pj-ax" text-anchor="middle">29</text><rect x="303.3" y="140.7" width="34.5" height="43.3" rx="2" class="pj-bar"/><text x="320.5" y="202" class="pj-ax" text-anchor="middle">30</text><rect x="345.8" y="96.0" width="34.5" height="88.0" rx="2" class="pj-bar"/><text x="363.1" y="202" class="pj-ax" text-anchor="middle">31</text><rect x="388.4" y="74.6" width="34.5" height="109.4" rx="2" class="pj-bar"/><text x="405.6" y="202" class="pj-ax" text-anchor="middle">32</text><rect x="430.9" y="54.3" width="34.5" height="129.7" rx="2" class="pj-bar"/><text x="448.2" y="202" class="pj-ax" text-anchor="middle">33</text><rect x="473.5" y="24.2" width="34.5" height="159.8" rx="2" class="pj-bar"/><text x="490.7" y="202" class="pj-ax" text-anchor="middle">2034</text><text x="490.7" y="18.2" class="pj-val" text-anchor="middle">$3.76B</text></svg><figcaption>Risk-adjusted revenue in our model, in millions. 2024 is the upfront payment from the Shionogi licensing deal; the rest is forecast.</figcaption></figure>
-      <div class="proj-text">
-      <h3>Why Maze</h3>
-      <p>Maze's Compass™ platform integrates variant functionalization with big biobank data and AI, creating defensible intellectual property and accelerating pipeline development. Shionogi's $150M upfront and $600M milestones licensing deal validates Maze's asset quality, and our model projects risk-adjusted revenues reaching ~$3.7B by 2034.</p>
-      <h3>The deal</h3>
-      <p>Our valuation model triangulates value through a risk-adjusted DCF and comparables, and values Maze at $3.88 billion pre-money. We opened with a first offer term sheet at $13.60 per share for 4.0% ownership. Setting LP value equal to LP cost gives a breakeven of $10.00 per share, so a $160M investment secures at least 9% post-money ownership.</p>
-      <ul class="results">
-        <li><span>Internal valuation (pre-money)</span><b>$3.88B</b></li>
-        <li><span>First offer</span><b>$13.60 / share · 4.0%</b></li>
-        <li class="best"><span>Breakeven</span><b>$10.00 / share · 9.1%</b></li>
-      </ul>
-      <p><a class="more" href="/projects/maze/">Read the full project →</a></p>
-      </div>
-    </div>
-  </section>
-  <section class="proj" id="chess-rating">
-    <div class="kicker">Personal project · JavaScript · Data visualization</div>
-    <h2><a href="/projects/chess-ratings/">My Chess Rating, 2009–2026</a></h2>
-    <p class="context">Every rated tournament I've played since 2009, from the US Chess records.</p>
-    <div class="proj-grid">
-      <figure class="proj-fig"><div class="pj-spark" id="pj-spark"></div><figcaption>My regular rating across 177 rated results. The gap is 2019–2023, when I wasn't playing rated chess.</figcaption></figure>
-      <div class="proj-text">
-      <h3>What I built</h3>
-      <p>An interactive chart on my chess site that pulls every rated result from the US Chess ratings data: regular, quick, and blitz, with the key moments of my comeback marked on the line and a full table of results underneath.</p>
-      <p><a class="more" href="/projects/chess-ratings/">Read the full project →</a></p>
-      </div>
-    </div>
-  </section>
 </main>
 
+<script src="/assets/nav.js" defer></script>
 <footer>© 2026 Suhaas Narayanan</footer>
 <script>
 /* Projects: chess rating sparkline from the chess site's data file */

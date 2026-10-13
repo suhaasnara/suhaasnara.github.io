@@ -302,3 +302,30 @@
   @media (max-width: 720px) { .moments { grid-template-columns: 1fr; } }
   .proj h2 a { color: inherit; text-decoration: none; }
   .proj h2 a:hover { color: var(--accent); }
+
+  /* Projects dropdown (top nav) */
+  .navdrop { position: relative; display: flex; align-items: center; }
+  .navdrop > a { padding-right: 4px !important; }
+  .navdrop-btn { background: none; border: 0; color: var(--muted); padding: 8px 8px 8px 2px; cursor: pointer; display: inline-flex; align-items: center; }
+  .navdrop-btn:hover, .navdrop.open .navdrop-btn { color: var(--forest); }
+  .navdrop-btn svg { transition: transform 0.15s; }
+  .navdrop.open .navdrop-btn svg { transform: rotate(180deg); }
+  .navdrop-menu { display: none; position: absolute; top: calc(100% + 6px); right: 0; min-width: 300px; background: var(--white); border: 1px solid var(--line); border-top: 2px solid var(--brass); border-radius: 0 0 var(--radius) var(--radius); box-shadow: 0 8px 24px rgba(28, 33, 30, 0.1); padding: 8px 0; z-index: 60; }
+  .navdrop-menu::before { content: ''; position: absolute; left: 0; right: 0; top: -10px; height: 10px; }
+  .navdrop:hover .navdrop-menu, .navdrop:focus-within .navdrop-menu, .navdrop.open .navdrop-menu { display: block; }
+  .navdrop-h { display: block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brass-text); padding: 6px 16px 4px; }
+  .navlinks .navdrop-menu a { display: block; padding: 8px 16px; color: var(--ink); font-size: 0.95rem; white-space: nowrap; }
+  .navlinks .navdrop-menu a:hover { background: var(--band); color: var(--forest); }
+  .navlinks .navdrop-menu a.navdrop-all { border-top: 1px solid var(--line); margin-top: 6px; padding-top: 10px; color: var(--accent); font-weight: 600; }
+  @media (max-width: 720px) { .navdrop-menu { right: 50%; transform: translateX(50%); min-width: 270px; } .navlinks .navdrop-menu a { white-space: normal; } }
+
+  /* Projects page: full write-up markers */
+  .jump-group { margin-top: 22px; }
+  .jump-group + .jump-group { margin-top: 14px; }
+  .jump-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brass-light); margin-bottom: 8px; }
+  .jump-group .jump { margin-top: 0; }
+  .jump a.full { border-color: var(--brass-light); color: var(--white); }
+  .jump a.full:hover { background: rgba(207, 178, 126, 0.15); }
+  .full-cta { display: inline-flex; align-items: center; gap: 8px; margin: -8px 0 28px; padding: 9px 16px; border-radius: var(--radius); background: var(--forest); color: var(--white); font-weight: 600; font-size: 0.95rem; text-decoration: none; border-bottom: 2px solid var(--brass); }
+  .full-cta:hover { background: var(--accent); color: var(--white); }
+  .kicker .fw { display: inline-block; margin-left: 8px; padding: 2px 7px; background: #f3ecdf; color: var(--brass-text); border-radius: 2px; letter-spacing: 0.1em; }
