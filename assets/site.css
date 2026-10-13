@@ -329,3 +329,4 @@
   .full-cta { display: inline-flex; align-items: center; gap: 8px; margin: -8px 0 28px; padding: 9px 16px; border-radius: var(--radius); background: var(--forest); color: var(--white); font-weight: 600; font-size: 0.95rem; text-decoration: none; border-bottom: 2px solid var(--brass); }
   .full-cta:hover { background: var(--accent); color: var(--white); }
   .kicker .fw { display: inline-block; margin-left: 8px; padding: 2px 7px; background: #f3ecdf; color: var(--brass-text); border-radius: 2px; letter-spacing: 0.1em; }
+  .pj-card .pj-link { display: inline-block; margin: 0 0 14px; }
