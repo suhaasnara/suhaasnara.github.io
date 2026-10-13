@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Goals Scored in the Premier League · Suhaas Narayanan</title>
+<meta name="description" content="An NBD model of goals scored by every Premier League player in 2023–24, asking whether the best scorers are really different from each other.">
+<meta property="og:title" content="Goals Scored in the Premier League · Suhaas Narayanan">
+<meta property="og:description" content="An NBD model of goals scored by every Premier League player in 2023–24, asking whether the best scorers are really different from each other.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Suhaas Narayanan">
+<meta property="og:image" content="https://suhaasnarayanan.com/og-home.png?v=2">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://suhaasnarayanan.com/og-home.png?v=2">
+<meta property="og:url" content="https://suhaasnarayanan.com/projects/premier-league/">
+<link rel="canonical" href="https://suhaasnarayanan.com/projects/premier-league/">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;1,400&family=Source+Sans+3:wght@400;600&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<nav class="topnav" aria-label="Main"><a class="brand" href="/">Suhaas Narayanan</a><div class="navlinks"><a href="/">Home</a><a href="/experience/">Experience</a><a href="/projects/" aria-current="page">Projects</a><a href="/chess/">Chess</a></div></nav>
+<header class="page-hero">
+  <a class="crumb" href="/projects/#premier-league">← All projects</a>
+  <div class="label">Probability models · MKTG/STAT 4760 · Solo</div>
+  <h1>Goals Scored in the Premier League</h1>
+  <p class="lede">Is there a best of the best? An NBD model of every goal scored in the 2023–24 Premier League season.</p>
+  <dl class="facts">
+    <div><dt>Course</dt><dd>MKTG/STAT 4760, Wharton</dd></div>
+    <div><dt>Team</dt><dd>Solo project</dd></div>
+    <div><dt>Data</dt><dd>Stathead FBref, 2023–24 season, 570 players</dd></div>
+    <div><dt>Method</dt><dd>NBD with varying time, fit by MLE</dd></div>
+  </dl>
+</header>
+
+<main>
+  <section class="dsec" id="question">
+    <div class="section-label">The question</div>
+    <h2>Is there a best of the best?</h2>
+    <div class="prose">
+      <p>The top-level in sports such as the NBA, NFL, and Premier League pit the best players against each other. There's considerable money to scout and secure these players, as well as trades to get the best on one's team.</p>
+      <p>Are the best different from each other? What separates the best from the best? These are common questions for any sports fan, but it is also a key business problem. Do the Lakers trade for Doncic and give up Anthony Davis in return? Is Haaland truly better than other scorers, or is he like the rest of the Premier League?</p>
+      <p>These questions are of heterogeneity, the differences between people. To look specifically at soccer, goals are key count data to investigate this.</p>
+    </div>
+  </section>
+
+  <section class="dsec band" id="data">
+    <div class="section-label">The data</div>
+    <h2>570 players, one season</h2>
+    <div class="prose">
+      <p>Count data is frequently modeled using the Poisson distribution, but there are some risks with that. The Negative Binomial Distribution accounts for hyper dispersion of data, a key concern in many real-life data sets.</p>
+      <p>After modeling a few datasets, this soccer dataset proved to be the most interesting. Previous datasets used were accidents in explosive-making factories; NBA 2-point field goals, blocks, and steals; and other soccer data sets. These were either not fit well by NBD models or proved to be unwieldy (Giannis and Jokic score a lot of 2s).</p>
+      <p>The data comes from Stathead FBref: Premier League, 2023–24 season, every player with at least one minute played. In terms of understanding the story, here are the building blocks.</p>
+      <ul>
+        <li><b>Individual</b> = one soccer player (i.e., Haaland)</li>
+        <li><b>Observed individual behavior</b> = goals per individual (i.e., 27)</li>
+        <li><b>Lambda</b> = propensity for a player to score a certain amount of goals
+          <ul><li>Haaland spins his Poisson wheel and scores 27 goals this season. Next season, he'll spin it again and may score 36 goals.</li></ul></li>
+        <li><b>r</b> = measure of heterogeneity, key to the business problem
+          <ul><li>High r (r &gt; 1) indicates homogeneity (everyone is the same)</li><li>Low r (r &lt; 1) indicates heterogeneity (people are different)</li></ul></li>
+        <li><b>Alpha</b> = shape parameter, no helpful insights</li>
+        <li><b>t</b> = time, minutes played</li>
+      </ul>
+    </div>
+    <figure class="fig" id="scatter">
+      <div class="fig-head">
+        <span class="fig-title">Goals against minutes played, 2023–24</span>
+        <div class="key"><span><i class="dot" style="background:var(--c1)"></i>Forwards and midfielders</span><span><i class="dot" style="background:#a3aba3"></i>Defenders and goalkeepers</span></div>
+      </div>
+      <div class="plot"><svg viewBox="0 0 880 400" role="img" aria-label="Scatter plot of goals scored against minutes played for 570 Premier League players in 2023–24. Most players score few goals; Haaland stands apart with 27 goals in 2,552 minutes."></svg><div class="tip"></div></div>
+      <figcaption class="fig-note">One dot per player. Hover for names.</figcaption>
+    </figure>
+    <div class="prose">
+      <p>In the specific data, Haaland is at the top with an astonishing 27 goals given 2,552 minutes of game time, a significant 5 goals above the next best with a similar amount of game time. There are some efficient scorers, with Chris Wood scoring 14 goals in only 1,812 minutes of game time. This puts Haaland's production in vaulted territory. This seems to indicate at least Haaland is different from the riff raff, but what about a more general statement?</p>
+    </div>
+  </section>
+
+  <section class="dsec" id="models">
+    <div class="section-label">The models</div>
+    <h2>Four NBD models</h2>
+    <div class="prose">
+      <p>A plain NBD model is the baseline to understand the fit to the data. From there, a spike is added. Truncating and shifting are not very relevant to this dataset. The next area of interest is different subgroups, focusing on Forwards and Midfielders.</p>
+      <p class="sub">MLE is the main form of parameter estimation since it captures the data better than Method of Moments or Means and Zeroes. These models assume stationarity and independence.</p>
+    </div>
+    <figure class="fig" id="hist">
+      <div class="fig-head">
+        <div class="seg" role="group" aria-label="Model">
+          <button type="button" data-m="nbd" aria-pressed="true">NBD</button><button type="button" data-m="spike" aria-pressed="false">NBD with spike</button><button type="button" data-m="fm" aria-pressed="false">FW and MF</button><button type="button" data-m="fmspike" aria-pressed="false">FW and MF with spike</button>
+        </div>
+        <div class="key"><span><i style="background:var(--c1)"></i>Actual</span><span><i class="dot" style="background:var(--c2)"></i>Expected</span></div>
+      </div>
+      <div class="stats" id="hist-stats"></div>
+      <div class="plot" style="margin-top:16px"><svg viewBox="0 0 880 330" role="img" aria-label="Histogram of players by goals scored, with the model's expected counts."></svg><div class="tip"></div></div>
+      <figcaption class="fig-note" id="hist-note"></figcaption>
+    </figure>
+  </section>
+
+  <section class="dsec band" id="findings">
+    <div class="section-label">What I found</div>
+    <h2>Different overall, similar at the top</h2>
+    <div class="tbl-wrap">
+      <table class="ptable">
+        <thead><tr><th></th><th>NBD with varying t</th><th>NBD with spike</th><th>FW and MF</th><th>FW and MF with spike</th></tr></thead>
+        <tbody>
+          <tr class="hl"><td>r</td><td>0.84</td><td>0.84</td><td>1.59</td><td>1.68</td></tr>
+          <tr><td>a</td><td>544</td><td>544</td><td>682</td><td>711</td></tr>
+          <tr><td>pi</td><td>N/A</td><td>0%</td><td>N/A</td><td>2%</td></tr>
+          <tr><td>p-value</td><td>0.96</td><td>0.92</td><td>0.62</td><td>0.55</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="prose" style="margin-top:28px">
+      <p>The key insight is drawn from the r parameter. Across the NBD models on the full dataset, a low r (less than 1) was estimated. A low r indicates high heterogeneity, meaning the soccer players are different from one another.</p>
+      <p>However, specific analysis of the Forwards and Midfielders subgroup revealed a different insight: a higher r (greater than 1), indicating homogeneity. This increase in homogeneity is to be expected (strikers are more similar to other strikers than defenders), but now the conclusion for strikers is different. Now the results indicate that the FWs and MFs are homogeneous, meaning they're similar to each other.</p>
+      <p class="pull">Pretty good years for a striker may be a lucky spin of the Poisson wheel.</p>
+    </div>
+  </section>
+
+  <section class="dsec" id="wheel">
+    <div class="section-label">Spin it again</div>
+    <h2>What the model expects next season</h2>
+    <div class="prose">
+      <p class="sub">Pick a player. Using the forwards and midfielders model, this is what he'd be expected to score if he played the same minutes again.</p>
+    </div>
+    <figure class="fig" id="spin">
+      <div class="calc"><label for="spin-player" class="fig-title">Player</label><select id="spin-player"></select></div>
+      <div class="calc-out" id="spin-out"></div>
+      <div class="plot"><svg viewBox="0 0 880 260" role="img" aria-label="Distribution of goals the model expects for the selected player next season, with this season's total marked."></svg><div class="tip"></div></div>
+      <div class="key" style="margin-top:8px"><span><i style="background:var(--c1)"></i>Chance of each goal total next season</span><span><i class="ln" style="background:var(--c2)"></i>Goals in 2023–24</span></div>
+      <figcaption class="fig-note">The model pulls every player back toward the group, so big seasons shrink and quiet ones grow. The shaded range covers 80% of outcomes.</figcaption>
+    </figure>
+  </section>
+
+  <section class="dsec band" id="next">
+    <div class="section-label">Limitations and next steps</div>
+    <h2>Where this goes next</h2>
+    <div class="prose">
+      <p>It's important to note that this is specific to the Premier League in the 2023–24 season. This connects back to the fundamental business problem: is there a best of the best? The analysis for the selected situation indicates a potential no among forwards and midfielders.</p>
+      <p>To begin with, this analysis should be repeated across seasons and in different leagues, presenting a larger outlook on soccer in general. It would also be interesting to try to predict future seasons' goal distributions using this model. Next, introducing covariates (age, starts, subs/unsubs, etc.) could potentially improve the model or glean useful insights. Other subgroups could produce interesting results as well, such as team or nation.</p>
+      <p>From there, it would be interesting to compare this with other sports. Is there similar heterogeneity in the NBA, NFL, or so on? In class, it was mentioned that field goal kickers may be homogeneous at the top (similar to what is seen here). What sports have high heterogeneity at the top, which ones don't, and why?</p>
+      <p class="pull">Haaland may still be better than everyone else, but on the whole, the top forwards and midfielders may be more similar to each other than different.</p>
+    </div>
+  </section>
+</main>
+
+<nav class="next" aria-label="More projects"><a href="/projects/"><small>Back</small>All projects</a><a class="r" href="/projects/maze/"><small>Next project</small>Maze Therapeutics: Series E Investment →</a></nav>
+<footer>© 2026 Suhaas Narayanan</footer>
+<script src="/assets/charts.js"></script>
+<script type="application/json" id="pl-data">{"players":[["Erling Haaland",2552,27,1],["Cole Palmer",2618,22,1],["Alexander Isak",2255,21,1],["Ollie Watkins",3217,19,1],["Dominic Solanke",3325,19,1],["Phil Foden",2857,19,1],["Mohamed Salah",2534,18,1],["Son Heung-min",2934,17,1],["Jean-Philippe Mateta",2282,16,1],["Jarrod Bowen",3019,16,1],["Bukayo Saka",2919,16,1],["Chris Wood",1812,14,1],["Nicolas Jackson",2799,14,1],["Kai Havertz",2634,13,1],["Hwang Hee-chan",2119,12,1],["Yoane Wissa",2493,12,1],["Leandro Trossard",1649,12,1],["Matheus Cunha",2440,12,1],["Julián Álvarez",2647,11,1],["Anthony Gordon",2890,11,1],["Carlton Morris",2862,11,1],["Darwin Núñez",2047,11,1],["Eberechi Eze",2055,11,1],["Richarlison",1491,11,1],["Elijah Adebayo",1419,10,1],["Diogo Jota",1145,10,1],["Leon Bailey",2068,10,1],["Rasmus Højlund",2158,10,1],["Bruno Fernandes",3118,10,1],["Michael Olise",1275,10,1],["Bryan Mbeumo",1960,9,1],["Douglas Luiz",2993,9,1],["Rodrigo Muniz",1593,9,1],["Callum Wilson",991,9,1],["João Pedro",2045,9,1],["Callum Hudson-Odoi",1854,8,1],["Cody Gakpo",1649,8,1],["Luis Díaz",2629,8,1],["Rodri",2931,8,1],["Martin Ødegaard",3091,8,1],["Raheem Sterling",1978,8,1],["Mohammed Kudus",2484,8,1],["Dejan Kulusevski",2762,8,1],["Antoine Semenyo",2105,8,1],["Abdoulaye Doucouré",2629,7,1],["Odsonne Édouard",1555,7,1],["Declan Rice",3225,7,1],["James Ward-Prowse",3001,7,1],["Justin Kluivert",1916,7,1],["Dominic Calvert-Lewin",2171,7,1],["Tomáš Souček",2870,7,1],["Alejandro Garnacho",2565,7,1],["Bruno Guimarães",3263,7,1],["Marcus Rashford",2271,7,1],["Raúl Jiménez",1395,7,1],["Scott McTominay",1901,7,1],["Bobby Reid",1423,6,1],["Bernardo Silva",2578,6,1],["Evan Ferguson",1367,6,1],["Gabriel Martinelli",2019,6,1],["Neal Maupay",1432,6,1],["Simon Adingra",2222,6,1],["Jacob Bruun Larsen",1249,6,1],["Ben Brereton",1105,6,1],["Oliver McBurnie",1280,6,1],["John McGinn",2999,6,1],["Sean Longstaff",2747,6,1],["Michail Antonio",1695,6,1],["Moussa Diaby",2174,6,1],["Taiwo Awoniyi",1042,6,1],["Mykhailo Mudryk",1576,5,1],["Brennan Johnson",2322,5,1],["Zeki Amdouni",1953,5,1],["Anthony Elanga",2433,5,1],["Morgan Gibbs-White",3156,5,1],["Ross Barkley",2618,5,1],["Harvey Barnes",802,5,1],["Jáder Durán",475,5,1],["Alex Iwobi",2332,5,1],["Alexis Mac Allister",2599,5,1],["Cristian Romero",2790,5,0],["Eddie Nketiah",1082,5,1],["Noni Madueke",1053,5,1],["Conor Gallagher",3128,5,1],["Danny Welbeck",1693,5,1],["Lyle Foster",1899,5,1],["Cameron Archer",1838,4,1],["Tahith Chong",1982,4,1],["Mario Lemina",2968,4,1],["Marcos Senesi",2242,4,0],["Ben White",2988,4,0],["Josh Brownhill",2252,4,1],["Joško Gvardiol",2328,4,0],["Gabriel Magalhães",3044,4,0],["Idrissa Gana Gueye",1884,4,1],["Chiedozie Ogbene",1995,4,1],["Pascal Groß",3114,4,1],["Willian",2053,4,1],["Pablo Sarabia",1745,4,1],["Lucas Paquetá",2622,4,1],["João Palhinha",2699,4,1],["Gabriel Jesus",1478,4,1],["Harry Wilson",1620,4,1],["Fabian Schär",3054,4,0],["Jordan Ayew",2543,4,1],["Ivan Toney",1450,4,1],["Kevin De Bruyne",1221,4,1],["David Datro Fofana",879,4,1],["James Maddison",2135,4,1],["Gustavo Hamer",2910,4,1],["Mathias Jensen",2204,3,1],["Dara O'Shea",2892,3,0],["Pedro Porro",3089,3,0],["Lewis Dunk",2869,3,0],["Andrew Robertson",1693,3,0],["Morgan Rogers",638,3,1],["Wilson Odobert",2098,3,1],["Keane Lewis-Potter",1441,3,1],["Facundo Buonanotte",1364,3,1],["Marcus Tavernier",2118,3,1],["Enzo Fernández",2209,3,1],["Andreas Pereira",2613,3,1],["Kaoru Mitoma",1486,3,1],["Christopher Nkunku",443,3,1],["Miguel Almirón",1937,3,1],["Thiago Silva",2527,3,0],["Micky van de Ven",2339,3,0],["Dominik Szoboszlai",2104,3,1],["James Mcatee",1823,3,1],["Jack Harrison",2214,3,1],["Jayden Bogle",2788,3,0],["Jack Grealish",1009,3,1],["Harvey Elliott",1352,3,1],["Solly March",554,3,1],["Jarrad Branthwaite",3116,3,0],["Kobbie Mainoo",1924,3,1],["Trent Alexander-Arnold",2155,3,0],["Kurt Zouma",2838,3,0],["Jacob Murphy",1189,3,1],["Jack Hinshelwood",869,3,0],["Beto",951,3,1],["Dwight McNeil",2892,3,1],["Pape Matar Sarr",2069,3,1],["Jeremy Doku",1595,3,1],["Ansu Fati",521,2,1],["Jean-Ricner Bellegarde",958,2,1],["Sasa Kalajdzic",166,2,1],["Álex Moreno",1031,2,0],["Nicolás Domínguez",1495,2,1],["Matty Cash",2142,2,0],["Luke Berry",323,2,1],["Vitaliy Mykolenko",2469,2,0],["Jeffrey Schlupp",1352,2,1],["Jarell Quansah",1190,2,0],["Timo Werner",809,2,1],["Jay Rodriguez",822,2,1],["Kevin Schade",333,2,1],["Pau Torres",2464,2,0],["Youri Tielemans",1622,2,1],["Tyrick Mitchell",3204,2,1],["Pedro Neto",1516,2,1],["Destiny Udogie",2391,2,0],["Amadou Onana",2091,2,1],["Manuel Akanji",2511,2,1],["Carlos Vinícius",315,2,1],["João Gomes",2649,2,1],["Ben Mee",1272,2,0],["Luis Sinisterra",699,2,1],["William Saliba",3420,2,0],["Nicolò Zaniolo",839,2,1],["Adama Traoré",377,2,1],["Rayan Aït-Nouri",2329,2,1],["Willy Boly",1438,2,0],["Danilo",1792,2,1],["Kristoffer Ajer",1832,2,0],["Axel Disasi",2579,2,0],["Dan Burn",2726,2,0],["Takehiro Tomiyasu",1149,2,0],["Rico Lewis",809,2,1],["Alfie Doughty",2925,2,0],["Joelinton",1279,2,1],["Tosin Adarabioyo",1617,2,0],["Jacob Brown",1019,2,1],["Sven Botman",1377,2,0],["Gabriel Osho",1846,2,0],["Max Kilman",3420,2,0],["Philip Billing",1398,2,1],["Pervis Estupiñán",1243,2,0],["Giovani Lo Celso",506,2,1],["Harry Maguire",1653,2,0],["Diogo Dalot",3174,2,0],["Christian Nørgaard",2505,2,1],["Virgil van Dijk",3177,2,0],["Joachim Andersen",3415,2,0],["Ethan Pinnock",2521,2,0],["Anel Ahmedhodžić",2649,2,0],["Nathan Aké",2042,2,0],["Josh Cullen",2057,2,1],["Enes Ünal",328,2,1],["Moussa Niakhate",1460,1,0],["Konstantinos Mavropanos",1500,1,0],["Kieffer Moore",108,1,1],["Ezri Konsa",3069,1,0],["Danny Ings",404,1,1],["Chris Richards",2094,1,1],["Sandro Tonali",438,1,1],["Mathias Jørgensen",1087,1,0],["Alex Scott",1014,1,1],["George Earthy",34,1,1],["Jacob Ramsey",853,1,1],["James Tarkowski",3419,1,0],["Moisés Caicedo",2866,1,1],["André Gomes",508,1,1],["Timothy Castagne",2634,1,0],["Albert Sambi Lokonga",1303,1,1],["Lucas Digne",2410,1,0],["Kieran Trippier",2236,1,0],["Ola Aina",1692,1,0],["Shandon Baptiste",229,1,1],["Nayef Aguerd",1857,1,0],["Tim Ream",1503,1,0],["Frank Onyeka",1161,1,1],["Lewis Miley",1202,1,1],["Dango Ouattara",1229,1,1],["Tom Lockyer",1169,1,0],["Rodrigo Bentancur",1005,1,1],["Craig Dawson",2209,1,0],["Alejo Véliz",50,1,1],["Oliver Norwood",1440,1,1],["Ben Davies",1090,1,0],["Jamaal Lascelles",1080,1,0],["Casemiro",1982,1,1],["James Garner",3004,1,1],["Curtis Jones",1167,1,1],["Oleksandr Zinchenko",1722,1,0],["Trevoh Chalobah",952,1,0],["Mads Roerslev",1985,1,0],["Leander Dendoncker",119,1,1],["John Stones",1064,1,1],["Fabio Vieira",297,1,1],["Vinicius Souza",2668,1,1],["Levi Colwill",1797,1,0],["Matt Ritchie",128,1,1],["Jack Robinson",2885,1,0],["Kenny Tete",867,1,0],["Mateo Kovačić",1551,1,1],["Jordan Clark",1304,1,1],["Vitaly Janelt",3054,1,1],["Illia Zabarnyi",3330,1,0],["Edson Álvarez",2377,1,1],["Anthony Martial",448,1,1],["Teden Mengi",2469,1,0],["Ameen Al-Dakhil",1056,1,0],["Mason Mount",516,1,1],["Armando Broja",542,1,1],["Christian Eriksen",1141,1,1],["Antony",1324,1,1],["Jefferson Lerma",2400,1,1],["Amad Diallo",390,1,1],["Raphaël Varane",1375,1,0],["Harry Toffolo",1459,1,0],["Calvin Bassey",2303,1,0],["Joe Willock",419,1,1],["Orel Mangala",1563,1,1],["Tom Cairney",1488,1,1],["Nathan Collins",2652,1,0],["Valentino Livramento",1314,1,0],["Lorenz Assignon",1234,1,0],["Andros Townsend",1210,1,1],["Carney Chukwuemeka",227,1,1],["Ryan Gravenberch",1121,1,1],["Conor Bradley",753,1,0],["Maxwel Cornet",112,1,1],["Wataru Endo",1722,1,1],["Ryan Yates",1992,1,1],["Michael Keane",439,1,0],["Saša Lukić",1122,1,1],["Hannibal Mejbri",133,1,1],["Charlie Taylor",2331,1,0],["Sander Berge",3005,1,1],["Cauley Woodrow",427,1,1],["Matt Doherty",1150,1,1],["Alfie Gilchrist",207,1,0],["Lewis Hall",781,1,0],["Joël Veltman",1588,1,0],["Jakub Kiwior",946,1,0],["David Brooks",282,1,1],["Emerson",1161,1,0],["Emerson Palmieri",3137,1,0],["Lewis Dobbin",232,1,1],["Oscar Bobb",302,1,1],["Arnaut Danjuma",595,1,1],["Mads Juel Andersen",400,1,0],["Toti Gomes",2772,1,0],["Victor Lindelöf",1328,1,0],["Jóhann Berg Guðmundsson",1192,1,1],["Saman Ghoddos",739,1,0],["Luca Koleosho",974,1,1],["Jayden Danns",9,0,1],["Mikey Moore",4,0,1],["Nathan Fraser",186,0,1],["Sergio Gómez",53,0,1],["Odisseas Vlachodimos",450,0,0],["Daniel Jebbison",21,0,1],["Séamus Coleman",665,0,0],["Nathaniel Clyne",1338,0,0],["Benoît Badiashile",1338,0,0],["Matheus França",232,0,1],["Anass Zaroury",152,0,1],["Milos Kerkez",1970,0,0],["Đorđe Petrović",1987,0,0],["Yasser Larouci",531,0,0],["Philippe Coutinho",25,0,1],["Joe Rothwell",386,0,1],["Daiki Hashioka",595,0,0],["Aymeric Laporte",12,0,0],["Reece James",419,0,0],["Murillo",2789,0,0],["Emile Smith Rowe",353,0,1],["Aaron Hickey",713,0,0],["Kaide Gordon",1,0,1],["Jaden Philogene Bidace",4,0,1],["Maxime Estève",1309,0,0],["Chris Basham",321,0,1],["Omari Forson",70,0,1],["Thomas Kaminski",3405,0,0],["Marc Cucurella",1782,0,0],["Lesley Ugochukwu",301,0,1],["Adam Smith",2150,0,0],["Mikkel Damsgaard",842,0,1],["Dane Scarlett",22,0,1],["Nathan Patterson",1005,0,0],["Connor Roberts",823,0,0],["James Trafford",2520,0,0],["Bernd Leno",3420,0,0],["Ryan Christie",2907,0,1],["Remi Matthews",4,0,0],["Jason Steele",1530,0,0],["Antonee Robinson",3265,0,0],["Lewis Cook",2786,0,1],["Tyler Adams",121,0,1],["James Milner",773,0,1],["Alphonse Areola",2699,0,0],["Rhian Brewster",346,0,1],["Rúben Dias",2559,0,0],["Ben Parkinson",25,0,1],["Loris Karius",90,0,0],["Stefan Bajcetic",26,0,1],["Sergio Reguilón",1530,0,0],["Thomas Strakosha",135,0,0],["Tawanda Chirewa",145,0,1],["Finley Munroe",4,0,1],["Gonzalo Montiel",801,0,0],["Fred Onyedinma",407,0,1],["Aleksandar Mitrović",33,0,1],["George Baldock",969,0,0],["Amari'i Bell",1720,0,0],["Martin Dúbravka",1985,0,0],["Ederson",2785,0,0],["Hjalmar Ekdal",437,0,0],["Ivo Grbić",771,0,0],["Paul Dummett",20,0,0],["Jurriën Timber",71,0,0],["Divock Origi",606,0,1],["Thomas Cannon",1,0,1],["Jesurun Rak Sakyi",136,0,1],["Jorginho",921,0,1],["Aaron Ramsdale",540,0,0],["Mohamed Elneny",28,0,1],["Jordan Pickford",3420,0,0],["Rodrigo Ribeiro",17,0,1],["Matt Turner",1530,0,0],["Nick Pope",1345,0,0],["Adam Wharton",1297,0,1],["Benicio Boaitey",40,0,1],["Scott McKenna",416,0,0],["Clément Lenglet",1153,0,0],["Kalvin Phillips",402,0,1],["Aaron Cresswell",436,0,1],["Jan Paul van Hecke",2369,0,0],["Donny van de Beek",3,0,0],["Felipe",375,0,0],["Thilo Kehrer",22,0,1],["Thomas Partey",788,0,1],["Dominic Sadi",1,0,1],["Tommy Doyle",1222,0,1],["Hamed Junior Traorè",47,0,1],["Saïd Benrahma",620,0,1],["Sofyan Amrabat",938,0,1],["Serge Aurier",833,0,1],["Ethan Wheatley",16,0,1],["Jamie Donley",3,0,1],["Ibrahima Konaté",1574,0,0],["Andre Brooks",938,0,1],["Josh Dasilva",24,0,1],["Radu Drăgușin",429,0,0],["Oliver Skipp",707,0,1],["Caoimhín Kelleher",900,0,0],["Odeluga Offiah",128,0,0],["Ionuț Radu",180,0,0],["Daniel Bentley",383,0,0],["James Hill",76,0,0],["Robert Sánchez",1433,0,0],["Willy Kambwala",330,0,0],["Yves Bissouma",2068,0,1],["Ivan Perišić",103,0,1],["Bobby Clark",89,0,1],["Ben Doak",14,0,1],["Ryan Giles",503,0,1],["Romain Faivre",41,0,1],["Angelo Ogbonna",635,0,0],["Jack Cork",27,0,1],["Sydie Peck",10,0,1],["Max Aarons",1237,0,0],["Bénie Traoré",387,0,1],["Daniel Muñoz",1439,0,1],["Emil Krafth",913,0,0],["Guglielmo Vicario",3420,0,0],["Thiago Alcántara",6,0,1],["Emiliano Martínez",3015,0,0],["Ben Osborn",1367,0,1],["Joe Gomez",1786,0,0],["Jaïro Riedewald",235,0,1],["Alisson",2520,0,0],["Max Lowe",503,0,1],["William Osula",786,0,1],["Bryan Gil",209,0,1],["Sam Curtis",28,0,0],["Enso Gonzalez",1,0,1],["Ethan Nwaneri",14,0,1],["Gio Reyna",235,0,1],["Harrison Reed",1325,0,1],["Pablo Fornals",426,0,1],["Matz Sels",1440,0,0],["Tyrone Mings",30,0,0],["Cédric Soares",62,0,0],["Tim Iroegbunam",164,0,1],["Daniel Gore",1,0,1],["Kyle Walker",2767,0,0],["Manor Solomon",199,0,1],["Youssef Chermiti",208,0,1],["Rico Henry",401,0,0],["Joel Ward",1980,0,0],["Michael Ndiweni",1,0,1],["Pierre Højbjerg",1311,0,1],["Luke Harris",75,0,1],["Cheikhou Kouyaté",212,0,1],["Lewis Warrington",1,0,1],["José Sá",3037,0,0],["Yehor Yarmoliuk",688,0,1],["Tom Davies",221,0,1],["Divin Mubama",80,0,1],["Vitinho",2314,0,1],["Ben Johnson",544,0,1],["Łukasz Fabiański",721,0,0],["Brandon Aguilera",5,0,1],["Deivid Washington",13,0,1],["Wes Foderingham",2649,0,0],["David Raya",2880,0,0],["Adam Lallana",850,0,1],["Boubacar Traoré",819,0,1],["Arijanet Muric",900,0,0],["Anis Ben Slimane",419,0,1],["Jordan Beyer",1234,0,0],["Kaine Kesler-Hayden",6,0,1],["Luke Shaw",959,0,0],["Julio Enciso",475,0,1],["Aaron Wan-Bissaka",1780,0,0],["Sam Johnstone",1796,0,0],["Ben Godfrey",1120,0,0],["Owen Beck",8,0,0],["Will Hughes",1891,0,1],["Carlos Baleba",1325,0,1],["Leon Chiwome",174,0,1],["Mark O'Mahony",63,0,1],["Igor",1637,0,0],["Joe Worrall",439,0,0],["Nuno Tavares",457,0,0],["Reece Burke",1660,0,0],["Naouirou Ahamada",349,0,1],["Issa Diop",1424,0,0],["Antwoine Hackford",13,0,1],["Mark Flekken",3285,0,0],["Pelly Ruddock Mpanzu",1101,0,1],["Neto",2880,0,0],["Omari Kellyman",37,0,1],["Nathan Redmond",142,0,1],["Facundo Pellistri",172,0,1],["Eric Dier",201,0,0],["Oliver Arblaster",943,0,1],["Joël Matip",781,0,0],["Mike Trésor",420,0,1],["Diego Carlos",1816,0,0],["John Fleck",92,0,1],["Hannes Delcroix",589,0,0],["Joshua Acheampong",6,0,0],["Valentín Barco",307,0,1],["Lisandro Martínez",646,0,0],["Ibrahim Sangaré",1035,0,1],["Ashley Young",2280,0,1],["James McConnell",4,0,1],["Hugo Bueno",741,0,1],["Issa Kaboré",1729,0,0],["Stefan Ortega",635,0,0],["Andrew Omobamidele",783,0,0],["Adam Webster",1144,0,0],["Bertrand Traoré",11,0,1],["Reiss Nelson",268,0,1],["Rhys Norrington-Davies",110,0,0],["Michael Obafemi",20,0,1],["Ian Maatsen",209,0,1],["Jimi Tauriainen",1,0,1],["Boubacar Kamara",1652,0,1],["Kaelan Casey",1,0,0],["Michael Olakigbe",59,0,1],["Auston Trusty",2572,0,0],["Cheick Doucouré",919,0,1],["Bart Verbruggen",1890,0,0],["Mason Holgate",710,0,0],["David Ozoh",156,0,1],["Nélson Semedo",3084,0,1],["Marc Guéhi",2021,0,0],["Ben Chilwell",756,0,0],["Ryan One",8,0,1],["Malo Gusto",1751,0,0],["Joe White",13,0,1],["Benson Manuel",116,0,1],["Tyler Onyango",1,0,1],["Joseph Johnson",77,0,0],["Davinson Sánchez",77,0,0],["Mason Burstow",9,0,1],["Mahmoud Dahoud",452,0,1],["Jadon Sancho",79,0,1],["Calum Chambers",152,0,1],["Neco Williams",1637,0,0],["Andrey Santos",8,0,1],["Zack Nelson",7,0,1],["Elliot Anderson",1027,0,1],["Marvelous Nakamba",1130,0,1],["John Egan",482,0,0],["Billy Gilmour",2120,0,1],["Aaron Ramsey",527,0,1],["Jonny Castro",5,0,1],["Amadou Diallo",1,0,1],["Jaidon Anthony",152,0,1],["Matt Targett",78,0,0],["Dean Henderson",1620,0,0],["Matheus Nunes",840,0,1],["Fábio Silva",264,0,1],["James Tomkins",10,0,0],["Robin Olsen",405,0,0],["André Onana",3420,0,0],["Myles Peart-Harris",13,0,1],["Han-Noah Massengo",16,0,1],["Roméo Lavia",33,0,1],["Alex Matos",1,0,1],["Santiago Bueno",822,0,0],["James Shea",15,0,0],["Alex Murphy",13,0,1],["Jakub Moder",618,0,1],["Kostas Tsimikas",679,0,0],["Lloyd Kelly",1559,0,0],["Fodé Ballo-Touré",71,0,1],["Tariq Lamptey",914,0,1],["Jonny Evans",1392,0,0],["Cesare Casadei",79,0,1],["Luke Thomas",917,0,0],["Vladimír Coufal",3132,0,0],["Mark Travers",360,0,0],["Chris Mepham",617,0,0]],"models":{"nbd":{"r":0.8428311792948262,"a":543.5264334520978,"pi":null,"actual":[272,99,55,34,24,16,14,12,9,5,30],"expected":[270.59,96.04,56.41,37.33,26.16,18.98,14.11,10.67,8.18,6.34,25.17],"p":0.9600213459375899},"spike":{"r":0.8428358801855272,"a":543.5275251972894,"pi":1.000000000001515e-06,"actual":[272,99,55,34,24,16,14,12,9,5,30],"expected":[270.59,96.04,56.41,37.33,26.16,18.98,14.11,10.67,8.18,6.34,25.17],"p":0.9243460915298511},"fm":{"r":1.5852468034898641,"a":681.8861116984101,"pi":null,"actual":[149,56,29,23,19,15,14,12,9,5,30],"expected":[139.84,57.27,38.2,27.84,21.01,16.14,12.54,9.82,7.73,6.11,24.52],"p":0.6193397699237699},"fmspike":{"r":1.6791373975449093,"a":711.0739052993238,"pi":0.015368961365264328,"actual":[149,56,29,23,19,15,14,12,9,5,30],"expected":[140.8,56.11,37.84,27.79,21.09,16.26,12.67,9.93,7.82,6.18,24.53],"p":0.5546346017040107}}}</script>
+<script>
+(function () {
+  const D = JSON.parse(document.getElementById('pl-data').textContent);
+  const { el, text, tip, point, clear, niceTicks, fmt } = SC;
+  const C1 = '#1e8458', C2 = '#b8862f', GRAY = '#a3aba3';
+
+  /* 1. Scatter: goals vs minutes */
+  (function () {
+    const fig = document.getElementById('scatter'), plot = fig.querySelector('.plot'), svg = plot.querySelector('svg'), T = tip(plot);
+    const W = 880, H = 400, L = 44, R = 16, TOP = 12, B = 40;
+    const x = v => L + v / 3500 * (W - L - R), y = v => TOP + (1 - v / 28) * (H - TOP - B);
+    [0, 5, 10, 15, 20, 25].forEach(v => { el('line', { x1: L, x2: W - R, y1: y(v), y2: y(v), class: v ? 'gl' : 'base' }, svg); text(svg, L - 8, y(v) + 4, v, 'ax', 'end'); });
+    [0, 500, 1000, 1500, 2000, 2500, 3000, 3500].forEach(v => text(svg, x(v), H - B + 18, fmt(v), 'ax', 'middle'));
+    text(svg, (L + W - R) / 2, H - 4, 'Minutes played', 'ax-t', 'middle');
+    text(svg, L - 8, TOP - 2 + 0, '', 'ax');
+    const g = el('g', {}, svg);
+    const pts = D.players.map(p => ({ n: p[0], t: p[1], g: p[2], fm: p[3], X: x(p[1]), Y: y(p[2]) }));
+    pts.sort((a, b) => a.fm - b.fm).forEach(p => el('circle', { cx: p.X, cy: p.Y, r: 4, fill: p.fm ? C1 : GRAY, 'fill-opacity': p.fm ? 0.75 : 0.6, stroke: '#fcfcfa', 'stroke-width': 1 }, g));
+    const lab = { 'Erling Haaland': [-8, -10, 'end'], 'Chris Wood': [-8, -10, 'end'], 'Cole Palmer': [8, -8, 'start'] };
+    pts.filter(p => lab[p.n]).forEach(p => { const [dx, dy, a] = lab[p.n]; el('circle', { cx: p.X, cy: p.Y, r: 5.5, fill: 'none', stroke: '#1c211e', 'stroke-width': 1.5 }, svg); text(svg, p.X + dx, p.Y + dy, p.n.split(' ').slice(-1)[0] + ' · ' + p.g, 'dlab', a); });
+    text(svg, L + 6, TOP + 10, 'Goals', 'ax-t');
+    const ring = el('circle', { r: 7, fill: 'none', stroke: C2, 'stroke-width': 2, opacity: 0 }, svg);
+    function move(ev) {
+      const [mx, my] = point(svg, ev); let best = null, bd = 400;
+      pts.forEach(p => { const d = (p.X - mx) ** 2 + (p.Y - my) ** 2; if (d < bd) { bd = d; best = p; } });
+      if (!best) { T.hide(); ring.setAttribute('opacity', 0); return; }
+      ring.setAttribute('cx', best.X); ring.setAttribute('cy', best.Y); ring.setAttribute('opacity', 1);
+      T.show('<b>' + best.n + '</b><br>' + best.g + (best.g === 1 ? ' goal' : ' goals') + ' in ' + fmt(best.t) + ' minutes', best.X, best.Y);
+    }
+    svg.addEventListener('mousemove', move); svg.addEventListener('touchstart', move, { passive: true });
+    svg.addEventListener('mouseleave', () => { T.hide(); ring.setAttribute('opacity', 0); });
+  })();
+
+  /* 2. Histogram: actual vs expected for each model */
+  (function () {
+    const NOTES = {
+      nbd: 'The NBD model fits surprisingly well to the data. As a baseline, it will likely be difficult to improve upon this. Both visually and from the Chi Squared Goodness of Fit test, there is a striking fit to the data.',
+      spike: 'Spikes are generally used to identify HCNBs and differentiate them away from the rest of the population. The spike did not improve the model, and the p-value decreased due to the extra parameter used.',
+      fm: 'This FW and MF model still fits the data well, but there is a key change in the parameters. r is now greater than 1, indicating overall homogeneity and an increase in homogeneity compared to the larger dataset.',
+      fmspike: 'Interestingly, there is a portion of HCNBs (0.02 of the population). There may be some conjecturing of midfielders who prefer to assist forwards or other midfielders than take a shot at the goal. However, the spike does not help the model significantly.'
+    };
+    const SHOW = { nbd: ['0.84', '544', '—', '0.96'], spike: ['0.84', '544', '0%', '0.92'], fm: ['1.59', '682', '—', '0.62'], fmspike: ['1.68', '711', '2%', '0.55'] };
+    const fig = document.getElementById('hist'), plot = fig.querySelector('.plot'), svg = plot.querySelector('svg'), T = tip(plot);
+    const stats = document.getElementById('hist-stats'), note = document.getElementById('hist-note');
+    const W = 880, H = 330, L = 44, R = 16, TOP = 14, B = 40;
+    const cats = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10+'];
+    const bw = (W - L - R) / cats.length;
+    function draw(key) {
+      const m = D.models[key]; clear(svg);
+      const max = key.startsWith('fm') ? 160 : 300, ticks = niceTicks(max, 5);
+      const y = v => TOP + (1 - v / ticks[ticks.length - 1]) * (H - TOP - B);
+      ticks.forEach(v => { el('line', { x1: L, x2: W - R, y1: y(v), y2: y(v), class: v ? 'gl' : 'base' }, svg); text(svg, L - 8, y(v) + 4, v, 'ax', 'end'); });
+      text(svg, (L + W - R) / 2, H - 4, 'Goals scored in the season', 'ax-t', 'middle');
+      text(svg, L + 6, TOP + 10, 'Players', 'ax-t');
+      const pathPts = [];
+      cats.forEach((c, i) => {
+        const cx = L + bw * i + bw / 2, a = m.actual[i], e = m.expected[i];
+        text(svg, cx, H - B + 18, c, 'ax', 'middle');
+        const top = y(a), bh = y(0) - top, w = bw - 10;
+        if (bh > 0) el('path', { d: `M${cx - w / 2},${y(0)}V${top + Math.min(4, bh)}q0,-4 4,-4h${w - 8}q4,0 4,4V${y(0)}Z`, fill: C1 }, svg);
+        pathPts.push([cx, y(e)]);
+      });
+      el('polyline', { points: pathPts.map(p => p.join(',')).join(' '), fill: 'none', stroke: C2, 'stroke-width': 2, 'stroke-linejoin': 'round' }, svg);
+      pathPts.forEach(p => el('circle', { cx: p[0], cy: p[1], r: 4.5, fill: C2, stroke: '#fcfcfa', 'stroke-width': 2 }, svg));
+      const hl = el('rect', { x: 0, y: TOP, width: bw, height: H - TOP - B, fill: '#1f3a2e', opacity: 0 }, svg);
+      svg.insertBefore(hl, svg.firstChild);
+      svg.onmousemove = svg.ontouchstart = ev => {
+        const [mx] = point(svg, ev); const i = Math.floor((mx - L) / bw);
+        if (i < 0 || i >= cats.length) { T.hide(); hl.setAttribute('opacity', 0); return; }
+        hl.setAttribute('x', L + bw * i); hl.setAttribute('opacity', 0.05);
+        T.show(`<b>${cats[i]} ${cats[i] === '1' ? 'goal' : 'goals'}</b><br>Actual: ${m.actual[i]} players<br>Expected: ${m.expected[i].toFixed(1)}`, L + bw * i + bw / 2, y(Math.max(m.actual[i], m.expected[i])));
+      };
+      svg.onmouseleave = () => { T.hide(); hl.setAttribute('opacity', 0); };
+      const s = SHOW[key], n = m.actual.reduce((a, b) => a + b, 0);
+      stats.innerHTML = [['r', s[0], 'heterogeneity'], ['α', s[1], 'shape (in minutes)'], ['π', s[2], 'share in the spike at 0'], ['p-value', s[3], `chi-squared fit, ${n} players`]]
+        .map(v => `<div class="stat"><div class="n">${v[1]}</div><div class="l">${v[0]} · ${v[2]}</div></div>`).join('');
+      note.textContent = NOTES[key];
+      fig.querySelectorAll('.seg button').forEach(b => b.setAttribute('aria-pressed', b.dataset.m === key));
+    }
+    fig.querySelectorAll('.seg button').forEach(b => b.addEventListener('click', () => draw(b.dataset.m)));
+    draw('nbd');
+  })();
+
+  /* 3. Spin the wheel again: NBD posterior predictive for the same minutes */
+  (function () {
+    const m = D.models.fm, r = m.r, a = m.a;
+    const list = D.players.filter(p => p[3] && p[2] >= 8).sort((p, q) => q[2] - p[2] || q[1] - p[1]);
+    const sel = document.getElementById('spin-player'), out = document.getElementById('spin-out');
+    sel.innerHTML = list.map((p, i) => `<option value="${i}">${p[0]} (${p[2]} goals)</option>`).join('');
+    const fig = document.getElementById('spin'), plot = fig.querySelector('.plot'), svg = plot.querySelector('svg'), T = tip(plot);
+    const W = 880, H = 260, L = 44, R = 16, TOP = 14, B = 40, KMAX = 40;
+    function pmf(x, t) {
+      const Rr = r + x, q = (a + t) / (a + t + t), ps = [Math.pow(q, Rr)];
+      for (let k = 0; k < KMAX; k++) ps.push(ps[k] * (Rr + k) / (k + 1) * (1 - q));
+      return ps;
+    }
+    function draw() {
+      const p = list[+sel.value], [name, t, x] = p, ps = pmf(x, t);
+      const mean = (r + x) * t / (a + t);
+      let c = 0, lo = null, hi = null;
+      ps.forEach((v, k) => { c += v; if (lo === null && c >= 0.1) lo = k; if (hi === null && c >= 0.9) hi = k; });
+      out.innerHTML = `<div class="stat"><div class="n">${x}</div><div class="l">goals in ${fmt(t)} minutes, 2023–24</div></div>` +
+        `<div class="stat"><div class="n">${mean.toFixed(1)}</div><div class="l">expected goals with the same minutes</div></div>` +
+        `<div class="stat"><div class="n">${lo}–${hi}</div><div class="l">80% range</div></div>`;
+      clear(svg);
+      const pmax = Math.max(...ps), ticks = niceTicks(pmax * 100, 4), top = ticks[ticks.length - 1];
+      const bw = (W - L - R) / (KMAX + 1);
+      const y = v => TOP + (1 - v * 100 / top) * (H - TOP - B), xk = k => L + bw * k + bw / 2;
+      el('rect', { x: L + bw * lo, y: TOP, width: bw * (hi - lo + 1), height: H - TOP - B, fill: '#f1f4f0' }, svg);
+      ticks.forEach(v => { el('line', { x1: L, x2: W - R, y1: y(v / 100), y2: y(v / 100), class: v ? 'gl' : 'base' }, svg); text(svg, L - 8, y(v / 100) + 4, v + '%', 'ax', 'end'); });
+      for (let k = 0; k <= KMAX; k += 5) text(svg, xk(k), H - B + 18, k, 'ax', 'middle');
+      text(svg, (L + W - R) / 2, H - 4, 'Goals next season', 'ax-t', 'middle');
+      ps.forEach((v, k) => { const tp = y(v), h = y(0) - tp; if (h > 0.5) el('rect', { x: xk(k) - bw / 2 + 1, y: tp, width: bw - 2, height: h, rx: Math.min(3, h / 2), fill: C1 }, svg); });
+      const ax = xk(Math.min(x, KMAX));
+      el('line', { x1: ax, x2: ax, y1: TOP, y2: H - B, stroke: C2, 'stroke-width': 2 }, svg);
+      text(svg, ax + (x > 30 ? -6 : 6), TOP + 12, '2023–24: ' + x, 'dlab', x > 30 ? 'end' : 'start');
+      svg.onmousemove = svg.ontouchstart = ev => {
+        const [mx] = point(svg, ev), k = Math.round((mx - L - bw / 2) / bw);
+        if (k < 0 || k > KMAX) return T.hide();
+        T.show(`<b>${k} goals</b><br>${(ps[k] * 100).toFixed(1)}% chance`, xk(k), y(ps[k]));
+      };
+      svg.onmouseleave = () => T.hide();
+    }
+    sel.addEventListener('change', draw);
+    draw();
+  })();
+})();
+</script>
+
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ac4439d40705499ab789aa120376ae2f"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

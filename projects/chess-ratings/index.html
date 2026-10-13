@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Chess Rating, 2009–2026 · Suhaas Narayanan</title>
+<meta name="description" content="Every US Chess rated section Suhaas Narayanan has played since 2009, pulled from the US Chess ratings API and built into an interactive chart.">
+<meta property="og:title" content="My Chess Rating, 2009–2026 · Suhaas Narayanan">
+<meta property="og:description" content="Every US Chess rated section Suhaas Narayanan has played since 2009, pulled from the US Chess ratings API and built into an interactive chart.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Suhaas Narayanan">
+<meta property="og:image" content="https://suhaasnarayanan.com/og-home.png?v=2">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://suhaasnarayanan.com/og-home.png?v=2">
+<meta property="og:url" content="https://suhaasnarayanan.com/projects/chess-ratings/">
+<link rel="canonical" href="https://suhaasnarayanan.com/projects/chess-ratings/">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;1,400&family=Source+Sans+3:wght@400;600&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<nav class="topnav" aria-label="Main"><a class="brand" href="/">Suhaas Narayanan</a><div class="navlinks"><a href="/">Home</a><a href="/experience/">Experience</a><a href="/projects/" aria-current="page">Projects</a><a href="/chess/">Chess</a></div></nav>
+<header class="page-hero">
+  <a class="crumb" href="/projects/#chess-rating">← All projects</a>
+  <div class="label">Data project · Personal</div>
+  <h1>My Chess Rating, 2009–2026</h1>
+  <p class="lede">Every US Chess rated section I've played, from my first tournament in 2009 to National Master, pulled from the US Chess ratings database and turned into an interactive chart for my chess site.</p>
+  <dl class="facts">
+    <div><dt>Data</dt><dd>US Chess ratings API, 177 rated sections</dd></div>
+    <div><dt>Built</dt><dd>October 2026</dd></div>
+    <div><dt>Tools</dt><dd>JavaScript, SVG, JSON</dd></div>
+    <div><dt>Live</dt><dd><a href="/chess/#journey/rating" style="color:var(--brass-light)">On the chess site</a></dd></div>
+  </dl>
+</header>
+
+<main>
+  <section class="dsec" id="chart">
+    <div class="section-label">The chart</div>
+    <h2>2009 to today</h2>
+    <div class="stats" id="cr-stats"></div>
+    <figure class="fig" id="cr-line">
+      <div class="fig-head"><span class="fig-title">Regular rating after each event</span><div class="key"><span><i class="ln" style="background:var(--c1)"></i>Regular rating</span><span><i class="dot" style="background:var(--c2)"></i>Key moment</span></div></div>
+      <div class="plot"><svg viewBox="0 0 880 380" role="img" aria-label="Line chart of my US Chess regular rating from 2009 to 2026, rising from about 1300 to a peak of 2231, with a break from 2019 to 2023."></svg><div class="tip"></div></div>
+      <figcaption class="fig-note">The 2019–2023 break is compressed. Hover the line for each event, or a numbered dot for a key moment.</figcaption>
+    </figure>
+    <ol class="moments" id="cr-moments"></ol>
+  </section>
+
+  <section class="dsec band" id="where">
+    <div class="section-label">Where and when</div>
+    <h2>Mostly Colorado, then Philadelphia</h2>
+    <figure class="fig" id="cr-bars">
+      <div class="fig-head"><span class="fig-title">Rated sections per year</span><div class="key"><span><i style="background:var(--c1)"></i>Colorado</span><span><i style="background:var(--c2)"></i>Other states</span></div></div>
+      <div class="plot"><svg viewBox="0 0 880 280" role="img" aria-label="Bar chart of rated sections per year, mostly in Colorado, with a gap from 2020 to 2022 and a jump in out-of-state events in 2025."></svg><div class="tip"></div></div>
+      <figcaption class="fig-note" id="cr-states"></figcaption>
+    </figure>
+  </section>
+
+  <section class="dsec" id="how">
+    <div class="section-label">How it's built</div>
+    <h2>From the ratings database to the page</h2>
+    <div class="steps">
+      <div><h3>Pull</h3><p>The US Chess ratings site loads its data from a public API. I pulled every page of my rated sections from it. Browsers block the chess site from calling that API directly (no CORS), so the data is saved as a JSON snapshot.</p></div>
+      <div><h3>Clean</h3><p>One row per rated section, with the date, event, state, and post-event regular, quick, and blitz ratings. Milestones are stored next to the data, and the stats on the page are checked against official US Chess records.</p></div>
+      <div><h3>Draw</h3><p>Plain SVG and JavaScript, no chart library. Regular, quick, and blitz toggles; a compressed axis break for 2019–2023; hover, tap, and arrow-key support; and a full table of results underneath.</p></div>
+    </div>
+    <p style="margin-top:32px"><a class="btn btn-primary" style="background:var(--forest);color:var(--white);border-color:var(--forest)" href="/chess/#journey/rating">See the full chart on the chess site</a></p>
+  </section>
+</main>
+
+<nav class="next" aria-label="More projects"><a href="/projects/maze/"><small>Previous project</small>← Maze Therapeutics: Series E Investment</a><a class="r" href="/projects/"><small>Back</small>All projects</a></nav>
+<footer>© 2026 Suhaas Narayanan</footer>
+<script src="/assets/charts.js"></script>
+<script>
+(function () {
+  const { el, text, tip, point, clear, niceTicks, fmt } = SC;
+  const C1 = '#1e8458', C2 = '#b8862f';
+  const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const ut = d => { const [y, m, dd] = d.split('-').map(Number); return Date.UTC(y, m - 1, dd); };
+  const fd = d => { const [y, m, dd] = d.split('-').map(Number); return MON[m - 1] + ' ' + dd + ', ' + y; };
+  fetch('/chess/data/uscf-history.json').then(r => r.json()).then(J => {
+    const rows = J.rows;
+    const reg = rows.filter(r => r.r != null);
+    const peak = reg.reduce((a, b) => (b.r > a.r ? b : a));
+    const events = new Set(rows.map(r => r.d + '|' + r.e)).size, states = new Set(rows.map(r => r.s));
+    document.getElementById('cr-stats').innerHTML = [
+      [rows.length, 'rated sections'], [events, 'tournaments'], [states.size, 'states'], [peak.r, 'career-high regular rating']
+    ].map(s => `<div class="stat"><div class="n">${s[0]}</div><div class="l">${s[1]}</div></div>`).join('');
+
+    /* Line chart with a compressed 2019–2023 break */
+    const plot = document.querySelector('#cr-line .plot'), svg = plot.querySelector('svg'), T = tip(plot);
+    const W = 880, H = 380, L = 48, R = 18, TOP = 16, B = 34, GAP = 34;
+    const a0 = ut('2009-08-01'), a1 = ut('2019-07-01'), b0 = ut('2023-01-01'), b1 = ut('2026-08-01');
+    const span = (a1 - a0) + (b1 - b0), pw = W - L - R - GAP;
+    const x = t => t <= a1 ? L + (t - a0) / span * pw : L + (a1 - a0) / span * pw + GAP + (t - b0) / span * pw;
+    const lo = 1200, hi = 2300, y = v => TOP + (hi - v) / (hi - lo) * (H - TOP - B);
+    for (let v = 1200; v <= 2300; v += 200) { el('line', { x1: L, x2: W - R, y1: y(v), y2: y(v), class: 'gl' }, svg); text(svg, L - 8, y(v) + 4, v, 'ax', 'end'); }
+    el('line', { x1: L, x2: W - R, y1: y(2200), y2: y(2200), stroke: C2, 'stroke-dasharray': '4 4', 'stroke-width': 1 }, svg);
+    text(svg, L + 6, y(2200) - 6, 'National Master (2200)', 'ax');
+    const bx = x(a1) + GAP / 2;
+    el('rect', { x: x(a1) + 4, y: TOP, width: GAP - 8, height: H - TOP - B, fill: '#f1f4f0' }, svg);
+    [2010, 2012, 2014, 2016, 2018, 2023, 2024, 2025, 2026].forEach(yr => text(svg, x(Date.UTC(yr, 0, 1)), H - B + 18, yr, 'ax', 'middle'));
+    let d = '', prev = null;
+    const P = reg.map(r => ({ ...r, X: x(ut(r.d)), Y: y(r.r) }));
+    P.forEach(p => { d += (prev && ut(p.d) - ut(prev.d) < 3e10 ? 'L' : 'M') + p.X.toFixed(1) + ',' + p.Y.toFixed(1); prev = p; });
+    el('path', { d, fill: 'none', stroke: C1, 'stroke-width': 2, 'stroke-linejoin': 'round' }, svg);
+    const dot = el('circle', { r: 5, fill: C1, stroke: '#fcfcfa', 'stroke-width': 2, opacity: 0 }, svg);
+    const ms = J.milestones.map((m, i) => {
+      const p = P.reduce((a, b) => Math.abs(ut(b.d) - ut(m.d)) < Math.abs(ut(a.d) - ut(m.d)) ? b : a);
+      return { ...m, i: i + 1, p };
+    });
+    ms.forEach(m => {
+      el('circle', { cx: m.p.X, cy: m.p.Y, r: 9, fill: C2, stroke: '#fcfcfa', 'stroke-width': 2 }, svg);
+      const t = text(svg, m.p.X, m.p.Y + 4, m.i, 'ax', 'middle'); t.setAttribute('style', 'fill:#fff;font-weight:600;font-size:10px');
+    });
+    document.getElementById('cr-moments').innerHTML = ms.map(m => `<li><b>${m.label}</b><span>${fd(m.d)} · ${m.p.r}</span></li>`).join('');
+    svg.addEventListener('mousemove', ev => {
+      const [mx, my] = point(svg, ev);
+      const m = ms.find(m => (m.p.X - mx) ** 2 + (m.p.Y - my) ** 2 < 144);
+      if (m) { dot.setAttribute('opacity', 0); return T.show(`<b>${m.i}. ${m.label}</b><br>${fd(m.d)} · ${m.p.r}`, m.p.X, m.p.Y); }
+      const p = P.reduce((a, b) => Math.abs(b.X - mx) < Math.abs(a.X - mx) ? b : a);
+      if (Math.abs(p.X - mx) > 20) { T.hide(); dot.setAttribute('opacity', 0); return; }
+      dot.setAttribute('cx', p.X); dot.setAttribute('cy', p.Y); dot.setAttribute('opacity', 1);
+      T.show(`<b>${p.e}</b><br>${fd(p.d)} · ${p.s}<br>Regular: ${p.r}`, p.X, p.Y);
+    });
+    svg.addEventListener('mouseleave', () => { T.hide(); dot.setAttribute('opacity', 0); });
+
+    /* Sections per year, Colorado vs elsewhere */
+    const by = {}; rows.forEach(r => { const yr = +r.d.slice(0, 4); by[yr] = by[yr] || { co: 0, x: 0, st: {} }; if (r.s === 'CO') by[yr].co++; else { by[yr].x++; by[yr].st[r.s] = (by[yr].st[r.s] || 0) + 1; } });
+    const YRS = []; for (let yr = 2009; yr <= 2026; yr++) YRS.push(yr);
+    const p2 = document.querySelector('#cr-bars .plot'), s2 = p2.querySelector('svg'), T2 = tip(p2);
+    const W2 = 880, H2 = 280, L2 = 40, R2 = 12, TP = 14, B2 = 30, bw = (W2 - L2 - R2) / YRS.length;
+    const y2 = v => TP + (1 - v / 30) * (H2 - TP - B2);
+    [0, 10, 20, 30].forEach(v => { el('line', { x1: L2, x2: W2 - R2, y1: y2(v), y2: y2(v), class: v ? 'gl' : 'base' }, s2); text(s2, L2 - 8, y2(v) + 4, v, 'ax', 'end'); });
+    YRS.forEach((yr, i) => {
+      const b = by[yr] || { co: 0, x: 0, st: {} }, cx = L2 + bw * i + bw / 2, w = bw - 10;
+      text(s2, cx, H2 - B2 + 18, "'" + String(yr).slice(2), 'ax', 'middle');
+      if (b.co) el('rect', { x: cx - w / 2, y: y2(b.co), width: w, height: y2(0) - y2(b.co), fill: C1, rx: b.x ? 0 : 3 }, s2);
+      if (b.x) el('rect', { x: cx - w / 2, y: y2(b.co + b.x), width: w, height: y2(b.co) - y2(b.co + b.x) - (b.co ? 2 : 0), fill: C2, rx: 2 }, s2);
+      const hit = el('rect', { x: cx - bw / 2, y: TP, width: bw, height: H2 - TP - B2, fill: 'transparent' }, s2);
+      const other = Object.entries(b.st).map(([k, v]) => k + ' ' + v).join(', ');
+      hit.addEventListener('mousemove', () => T2.show(`<b>${yr}</b><br>Colorado: ${b.co}<br>Other states: ${b.x}${other ? ' (' + other + ')' : ''}`, cx, y2(b.co + b.x)));
+      hit.addEventListener('mouseleave', () => T2.hide());
+    });
+    const sc = {}; rows.forEach(r => sc[r.s] = (sc[r.s] || 0) + 1);
+    document.getElementById('cr-states').textContent = 'States: ' + Object.entries(sc).sort((a, b) => b[1] - a[1]).map(([k, v]) => k + ' ' + v).join(', ') + '. Results through ' + fd(J.asOf) + '.';
+  });
+})();
+</script>
+
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ac4439d40705499ab789aa120376ae2f"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
